@@ -12,6 +12,8 @@ class App extends Component {
   componentDidMount() {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
     .then(res => res.json())
+    .then(movies => this.props.getMovies(movies))
+    .catch(err => console.log(err))
   }
 
   render() {
