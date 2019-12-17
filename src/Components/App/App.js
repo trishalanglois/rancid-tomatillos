@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getMovies } from '../../actions/actions';
 import './App.scss';
 import Nav from '../Nav/Nav';
+import { connect } from 'net';
 
 class App extends Component {
   constructor() {
@@ -22,4 +23,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatch = dispatch => ({
+  getMovies: movies => dispatch( getMovies(movies) )
+});
+
+export default connect(null, mapDispatch)(App);
