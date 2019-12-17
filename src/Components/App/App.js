@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getMovies } from '../../actions/actions';
 import './App.scss';
 import Nav from '../Nav/Nav';
-import { connect } from 'net';
+import { connect } from 'react-redux';
 
 class App extends Component {
   constructor() {
