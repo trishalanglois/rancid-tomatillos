@@ -26,7 +26,7 @@ const MoviesContainer = (props) => {
 }
 
 const mapState = state => ({
-  movies: state.getMovies
+  movies: state.movies
 });
 
 export default connect(mapState)(MoviesContainer);
