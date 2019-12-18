@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   render() {
-    return(
+    return (
       <body>
         <Route exact path='/' render={() =>  
           <>
