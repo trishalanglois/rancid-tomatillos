@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getMovies } from '../../actions/actions';
+import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.scss';
 import Nav from '../Nav/Nav';
 import { connect } from 'react-redux';
@@ -20,13 +21,14 @@ class App extends Component {
     return(
       <body>
         <Nav />
+        <MoviesContainer />
       </body>
     )
   }
 }
 
 const mapDispatch = dispatch => ({
-  getMovies: movies => dispatch( getMovies(movies) )
-});
+  getMovies: movies => dispatch(getMovies(movies))
+})
 
 export default connect(null, mapDispatch)(App);
