@@ -1,13 +1,15 @@
 import React from 'react';
 import './Nav.scss';
-import Login from '../Login/Login';
+import { Link } from 'react-router-dom'
 
 const Nav = () => {
   return(
     <header>
       <img  />
       <h1>Rancid Tomatillos</h1>
-      <Login />
+      <Link to='/login'>
+        <button type='button'>Login</button>
+      </Link>
     </header>
   )
 }
