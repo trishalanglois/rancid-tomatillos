@@ -4,6 +4,7 @@ import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.scss';
 import Nav from '../Nav/Nav';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -20,10 +21,15 @@ class App extends Component {
   render() {
     return(
       <body>
-        <Nav />
-        <main>
-          <MoviesContainer />
-        </main>
+        <Route exact path='/' render={() =>  
+          <>
+            <Nav />
+            <main>
+              <MoviesContainer />
+            </main>
+          </>
+        }
+        />
       </body>
     )
   }
