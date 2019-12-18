@@ -13,7 +13,7 @@ class App extends Component {
   componentDidMount() {
     fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
     .then(res => res.json())
-    .then(movies => this.props.getMovies(movies))
+    .then(data => this.props.getMovies(data.movies))
     .catch(err => console.log(err))
   }
 
@@ -21,7 +21,9 @@ class App extends Component {
     return(
       <body>
         <Nav />
-        <MoviesContainer />
+        <main>
+          <MoviesContainer />
+        </main>
       </body>
     )
   }
@@ -31,4 +33,4 @@ const mapDispatch = dispatch => ({
   getMovies: movies => dispatch(getMovies(movies))
 })
 
-export default connect(null, mapDispatch)(App);
+export default connect(null, mapDispatch)(App)

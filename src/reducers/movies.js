@@ -2,7 +2,7 @@
 export const getMovies = (state = [], action) => {
   switch(action.type) {
     case 'GET_MOVIES':
-      return action.movies
+      return [...state, ...action.movies]
     default: 
       return state
   }
