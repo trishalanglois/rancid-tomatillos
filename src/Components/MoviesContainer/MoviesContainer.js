@@ -1,7 +1,6 @@
 import React from 'react';
 import './MoviesContainer.scss';
 import Movie from '../Movie/Movie';
-import { getMovies } from '../../actions/actions';
 import { connect } from 'react-redux';
 
 const MoviesContainer = (props) => {

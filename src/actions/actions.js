@@ -4,8 +4,15 @@ export const getMovies = (movies) => ({
 });
 
 export const currentUser = (user) => {
-  console.log('user:', user)
-  return {type: 'SET_CURRENT_USER',
-  user
-}
+  return {
+    type: 'SET_CURRENT_USER',
+    user
+  }
+};
+
+export const loggedIn = (loggedIn) => {
+  return {
+    type: 'LOG_IN',
+    loggedIn
+  }
 };

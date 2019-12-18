@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Login.scss';
 import { getUser } from '../../apiCalls'
 import { connect } from 'react-redux'
-import { currentUser } from '../../actions/actions'
+import { currentUser, loggedIn } from '../../actions/actions'
 
 class Login extends Component {
   constructor() {
@@ -22,6 +22,7 @@ class Login extends Component {
     e.preventDefault()
     getUser(this.state.email, this.state.password)
     .then(user => this.props.currentUser(user))
+    .then(this.props.loggedIn(true))
     .catch(err => console.log(err))
   }
 
@@ -48,14 +49,16 @@ class Login extends Component {
           type='button'
           onClick={(e) => this.handleLogin(e)}
         >
-          Login</button>
+          Login
+        </button>
       </form>
     )
   }
 }
 
 const mapDispatch = dispatch => ({
-  currentUser: user => dispatch( currentUser(user) )
+  currentUser: user => dispatch( currentUser(user) ),
+  loggedIn: boolean => dispatch( loggedIn(boolean))
 })
 
 export default connect(null, mapDispatch)(Login);
