@@ -1,4 +1,3 @@
-
 export const getMovies = (state = [], action) => {
   switch(action.type) {
     case 'GET_MOVIES':
