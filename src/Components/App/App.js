@@ -1,24 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { getMovies } from '../../actions/actions';
+import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import './App.scss';
+import Nav from '../Nav/Nav';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super()
+  }
+
+  componentDidMount() {
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
+    .then(res => res.json())
+    .then(data => this.props.getMovies(data.movies))
+    .catch(err => console.log(err))
+  }
+
+  render() {
+    return(
+      <body>
+        <Nav />
+        <main>
+          <MoviesContainer />
+        </main>
+      </body>
+    )
+  }
 }
 
-export default App;
+const mapDispatch = dispatch => ({
+  getMovies: movies => dispatch(getMovies(movies))
+})
+
+export default connect(null, mapDispatch)(App)
