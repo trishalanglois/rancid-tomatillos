@@ -11,7 +11,7 @@ const MoviesContainer = (props) => {
     const displayMovies = movies.map(movie => {
       return(
         <Movie
-        {...movie}
+        movie={movie}
         key={movie.id}
         />
       )
