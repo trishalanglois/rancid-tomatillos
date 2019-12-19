@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './Login.scss';
-import { getUser } from '../../apiCalls'
-import { connect } from 'react-redux'
-import { currentUser, loggedIn } from '../../actions/actions'
+import { getUser } from '../../apiCalls';
+import { connect } from 'react-redux';
+import { currentUser, loggedIn } from '../../actions/actions';
+import { Redirect } from 'react-router-dom';
+
 
 class Login extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       email: '',
@@ -20,13 +22,16 @@ class Login extends Component {
 
   handleLogin = (e) => {
     e.preventDefault()
-    getUser(this.state.email, this.state.password)
+  getUser(this.state.email, this.state.password)
     .then(user => this.props.currentUser(user))
     .then(this.props.loggedIn(true))
     .catch(err => console.log(err))
   }
 
   render() {
+    if (this.props.isLoggedIn) {
+      return <Redirect to='/' />
+    }
     return (
       <form>
         <label for='user-email'>email</label>
@@ -56,9 +61,13 @@ class Login extends Component {
   }
 }
 
+const mapState = state => ({
+  isLoggedIn: state.loggedIn
+})
+
 const mapDispatch = dispatch => ({
   currentUser: user => dispatch( currentUser(user) ),
   loggedIn: boolean => dispatch( loggedIn(boolean))
 })
 
-export default connect(null, mapDispatch)(Login);
+export default connect(mapState, mapDispatch)(Login);

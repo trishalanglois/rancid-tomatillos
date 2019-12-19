@@ -41,12 +41,8 @@ class App extends Component {
   }
 }
 
-const mapState = state => ({
-  
-})
-
 const mapDispatch = dispatch => ({
   getMovies: movies => dispatch(getMovies(movies))
 })
 
-export default connect(mapState, mapDispatch)(App)
+export default connect(null, mapDispatch)(App)
