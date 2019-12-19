@@ -4,6 +4,7 @@ import { getUser } from '../../apiCalls';
 import { connect } from 'react-redux';
 import { currentUser, loggedIn } from '../../actions/actions';
 import { Redirect } from 'react-router-dom';
+import Error from '../Error/Error'
 
 
 class Login extends Component {
@@ -12,7 +13,8 @@ class Login extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   }
 
@@ -24,13 +26,18 @@ class Login extends Component {
     e.preventDefault()
   getUser(this.state.email, this.state.password)
     .then(user => this.props.currentUser(user))
-    .then(this.props.loggedIn(true))
-    .catch(err => console.log(err))
+    .then(res => {
+      if(this.props.currentUser) {
+        this.props.loggedIn(true)
+      }})
+    .catch(err => this.setState({error: 'Invalid Login, Please Try Again'}))
   }
 
   render() {
     if (this.props.isLoggedIn) {
       return <Redirect to='/' />
+    } if (this.state.error) {
+      return <Error errorMessage={this.state.error}/>
     }
     return (
       <form>
