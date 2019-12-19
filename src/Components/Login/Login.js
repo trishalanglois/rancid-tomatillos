@@ -42,22 +42,22 @@ class Login extends Component {
     return (
       <form>
         <label for='user-email'>email</label>
-        <input 
+        <input
           className='login-input'
-          value={this.state.name} 
+          value={this.state.name}
           name='email'
           type='text'
           onChange={(e) => this.handleChange(e)}
         />
         <label for='user-password'>Password</label>
-        <input 
+        <input
           className='login-input'
-          value={this.state.password} 
+          value={this.state.password}
           name='password'
           type='password'
           onChange={(e) => this.handleChange(e)}
         />
-        <button 
+        <button
           type='button'
           onClick={(e) => this.handleLogin(e)}
         >
@@ -73,8 +73,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  currentUser: user => dispatch( currentUser(user) ),
-  loggedIn: boolean => dispatch( loggedIn(boolean))
+  currentUser: user => dispatch(currentUser(user)),
+  loggedIn: boolean => dispatch(loggedIn(boolean))
 })
 
 export default connect(mapState, mapDispatch)(Login);
