@@ -47,10 +47,6 @@ class App extends Component {
 }
 
 
-// const mapState = state => ({
-//   currentMovie: state.movies.find(movie => movie.id === )
-// })
-
 const mapDispatch = dispatch => ({
   getMovies: movies => dispatch(getMovies(movies))
 })
