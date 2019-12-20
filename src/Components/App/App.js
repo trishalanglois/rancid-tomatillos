@@ -6,6 +6,7 @@ import Nav from '../Nav/Nav';
 import Login from '../Login/Login'
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
+import MovieShowPage from '../MovieShowPage/MovieShowPage';
 
 class App extends Component {
   constructor() {
@@ -32,14 +33,19 @@ class App extends Component {
           </main>
           }
         />
-        <Route path='/login' render={() => 
+        <Route path='/login' render={() =>
           <Login />
+          }
+        />
+        <Route path='/movies/:id' render={() =>
+            <MovieShowPage />
           }
         />
       </body>
     )
   }
 }
+
 
 const mapDispatch = dispatch => ({
   getMovies: movies => dispatch(getMovies(movies))
