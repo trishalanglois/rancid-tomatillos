@@ -7,6 +7,7 @@ import Login from '../Login/Login'
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import MovieShowPage from '../MovieShowPage/MovieShowPage';
+import { fetchMovies } from '../../apiCalls'
 
 class App extends Component {
   constructor() {
@@ -14,8 +15,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
-      .then(res => res.json())
+    fetchMovies()
       .then(data => this.props.getMovies(data.movies))
       .catch(err => console.log(err))
   }
