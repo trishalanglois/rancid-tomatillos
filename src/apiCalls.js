@@ -1,3 +1,13 @@
+export const fetchMovies = () => {
+  return fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
+    .then(response => {
+      if(!response.ok) {
+        throw Error('Error fetching movies')
+      }
+      return response.json()
+    })
+}
+
 export const getUser = (email, password) => {
   const options = {
     method: 'POST',
