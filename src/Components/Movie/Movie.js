@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getCurrentMovie } from '../../actions/actions';
 import { connect } from 'react-redux';
 
-const Movie = (props) => {
+export const Movie = (props) => {
   return(
     <section>
       <h2>{props.movie.title}</h2>
