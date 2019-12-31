@@ -5,12 +5,13 @@ import { shallow } from 'enzyme';
 
 describe('Login', () => {
   
-  let wrapper, mockEvent
+  let wrapper, mockEvent, mockGetUser
 
   describe('Login Component', () => {
 
     beforeEach(() => {
       mockEvent = { target: {name: 'email', value:'abc123@aol.com'} }
+      mockGetUser = jest.fn()
       wrapper = shallow(<Login />)
     });
 
@@ -43,12 +44,11 @@ describe('Login', () => {
       expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockNameEvent)
     });
 
-    it('Should ', () => {
-
-    });
-
-    it('Should ', () => {
-
+    it('Should call getUser when handleLogin is called', () => {
+      const mockEvent = { preventDefault: jest.fn() };
+      wrapper.find('button').simulate('click', mockEvent);
+      
+      expect(mockGetUser).toHaveBeenCalledTimes(1)
     });
   });
 
