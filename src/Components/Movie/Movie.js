@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 export const Movie = (props) => {
   return(
-    <section>
+    <section className="movie-card">
       <h2>{props.movie.title}</h2>
       <p>{props.movie.average_rating}</p>
       <img className='movie-poster-img' src={props.movie.poster_path}/>

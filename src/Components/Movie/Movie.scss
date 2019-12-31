@@ -1,4 +1,14 @@
+* {
+  border: 1px solid red;
+}
+
+.movie-card {
+  border: 1px solid black;
+  height: 80vh;
+  width: 50vh;
+}
+
 .movie-poster-img {
-  height: 100px;
-  width: 100px;
+  height: 75%;
+  width: 100%;
 }
