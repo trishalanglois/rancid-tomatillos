@@ -7,12 +7,14 @@ import { connect } from 'react-redux';
 export const Movie = (props) => {
   return(
     <section className="movie-card">
-      <h2>{props.movie.title}</h2>
-      <p>{props.movie.average_rating}</p>
       <img className='movie-poster-img' src={props.movie.poster_path}/>
-      <Link to={`/movies/${props.movie.id}`}>
-        <button onClick={() => props.getCurrentMovie(props.movie)}>Start the Show</button>
-      </Link>
+      <div className="movie-card-bottom">
+        <p>{props.movie.average_rating}</p>
+        <h2>{props.movie.title}</h2>
+        <Link to={`/movies/${props.movie.id}`}>
+          <button onClick={() => props.getCurrentMovie(props.movie)}>Start the Show</button>
+        </Link>
+      </div>
     </section>
   )
 }
