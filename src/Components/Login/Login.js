@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom';
 import Error from '../Error/Error'
 
 
-class Login extends Component {
+export class Login extends Component {
   constructor(props) {
     super(props)
 
@@ -43,7 +43,7 @@ class Login extends Component {
       <form>
         <label for='user-email'>email</label>
         <input
-          className='login-input'
+          className='login-input login-input-email'
           value={this.state.name}
           name='email'
           type='text'
@@ -51,7 +51,7 @@ class Login extends Component {
         />
         <label for='user-password'>Password</label>
         <input
-          className='login-input'
+          className='login-input login-input-password'
           value={this.state.password}
           name='password'
           type='password'
@@ -68,11 +68,11 @@ class Login extends Component {
   }
 }
 
-const mapState = state => ({
+export const mapState = state => ({
   isLoggedIn: state.loggedIn
 })
 
-const mapDispatch = dispatch => ({
+export const mapDispatch = dispatch => ({
   currentUser: user => dispatch(currentUser(user)),
   loggedIn: boolean => dispatch(loggedIn(boolean))
 })
