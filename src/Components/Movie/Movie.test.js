@@ -5,7 +5,6 @@ import { getCurrentMovie } from '../../actions/actions';
 
 
 describe('Movie', () => {
-  let wrapper
   let mockProps = {
     movie: {
       id: 1,
@@ -16,16 +15,12 @@ describe('Movie', () => {
     type: 'GET_MOVIE'
   }
 
-  beforeEach(() => {
-    wrapper = shallow(<Movie
-      id={mockProps.movie.id}
-      title={mockProps.movie.title}
-      average_rating={mockProps.movie.average_rating}
-      poster_path={mockProps.movie.poster_path}
-      />)
-  })
-
   it.skip('should match the snapshot', () => {
+    let wrapper = shallow(<Movie
+      movie={mockProps.movie}
+      type={mockProps.type}
+    />)
+
     expect(wrapper).toMatchSnapshot()
   });
 
@@ -36,7 +31,6 @@ describe('mapDispatch', () => {
     const mappedProps = mapDispatch(mockDispatch);
 
     mappedProps.getCurrentMovie(mockProps);
-    console.log(mockProps.movie);
 
     expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
   });
