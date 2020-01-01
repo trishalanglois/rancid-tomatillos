@@ -19,19 +19,25 @@
 .movie-title {
   color: white;
   text-align: center;
+  margin-top: 0px;
 }
 
 .average-rating {
   color: #FFAC33;
+  font-weight: bold;
+  padding-top: .5em;
 }
 
 .movie-button {
   background-color: #30BD9E;
   border-radius: 20px;
-  font-size: 1.25em;
+  font-size: 1.15em;
   margin-bottom: .75em;
     &:hover {
     font-weight: bold;
     cursor: pointer;
   }
+  border: none;
+  padding: .25em;
+  width: 50%;
 }
