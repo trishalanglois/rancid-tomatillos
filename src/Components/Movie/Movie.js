@@ -14,7 +14,7 @@ export const Movie = (props) => {
         </p>
         <h2 className="movie-title">{props.movie.title}</h2>
         <Link to={`/movies/${props.movie.id}`}>
-          <button className="movie-button" onClick={() => props.getCurrentMovie(props.movie)}>Start the Show</button>
+          <button className="movie-button" onClick={() => props.getCurrentMovie(props.movie)}>START THE SHOW</button>
         </Link>
       </div>
     </section>

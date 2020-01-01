@@ -1,3 +1,5 @@
+@import '../../variables';
+
 .movie-card {
   border: 1px solid black;
   height: 80vh;
@@ -20,12 +22,15 @@
   color: white;
   text-align: center;
   margin-top: 0px;
+  font-family: $main-font
 }
 
 .average-rating {
   color: #FFAC33;
   font-weight: bold;
   padding-top: .5em;
+  font-family: $main-font
+
 }
 
 .movie-button {
@@ -38,6 +43,7 @@
     cursor: pointer;
   }
   border: none;
-  padding: .25em;
+  padding: .35em;
   width: 50%;
+  font-family: $accent-font;
 }
