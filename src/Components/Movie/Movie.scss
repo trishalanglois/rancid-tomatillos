@@ -1,7 +1,3 @@
-* {
-  border: 1px solid red;
-}
-
 .movie-card {
   border: 1px solid black;
   height: 80vh;
@@ -11,6 +7,7 @@
 .movie-poster-img {
   height: 75%;
   width: 100%;
+  margin-bottom: -4px;
 }
 
 .movie-card-bottom {

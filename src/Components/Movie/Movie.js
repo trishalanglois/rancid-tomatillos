@@ -10,9 +10,7 @@ export const Movie = (props) => {
       <img className='movie-poster-img' src={props.movie.poster_path}/>
       <div className="movie-card-bottom">
         <p className="average-rating">
-
-        {Math.round(props.movie.average_rating)}
-        
+        Avg. Rating: {Math.round(props.movie.average_rating)} / 10
         </p>
         <h2 className="movie-title">{props.movie.title}</h2>
         <Link to={`/movies/${props.movie.id}`}>
