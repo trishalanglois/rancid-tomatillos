@@ -1,15 +1,97 @@
 import React from 'react';
-import Login from './Login';
+import { Login, mapState, mapDispatch } from './Login';
 import { shallow } from 'enzyme';
+import { currentUser, loggedIn } from '../../actions/actions';
+import { getUser } from '../../apiCalls';
 
 describe('Login', () => {
-  let wrapper
+  
+  let wrapper, mockEvent, mockGetUser
 
-  beforeEach(() => {
-    wrapper = shallow(<Login />)
-  })
+  describe('login Component', () => {
 
-  it.skip('should match the snapshot', () => {
-    expect(wrapper).toMatchSnapshot()
-  })
+    beforeEach(() => {
+      mockEvent = { target: {name: 'email', value:'abc123@aol.com'} }
+      mockGetUser = jest.fn()
+      wrapper = shallow(<Login />)
+    });
+
+    it('Should match the snapshot', () => {
+      expect(wrapper).toMatchSnapshot()
+    });
+
+    it('Should setState when handleChange is called', () => {
+      wrapper.setState({ email: '', password:'', error: '' });
+      wrapper.instance().handleChange(mockEvent);
+  
+      expect(wrapper.state()).toEqual({ email: 'abc123@aol.com', password:'', error: '' })
+    });
+
+    it('Should call handleChange when email input is changed', () => {
+      wrapper.instance().handleChange = jest.fn();
+      const mockEmailEvent = { target: {email: 'email', value:'abc123@aol.com'} }
+
+      wrapper.find('.login-input-email').simulate('change', mockEmailEvent);
+
+      expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockEmailEvent)
+    });
+
+    it('Should call handleChange when password input is changed', () => {
+      wrapper.instance().handleChange = jest.fn();
+      const mockPasswordEvent = { target: {password: 'password', value:'password123'} }
+
+      wrapper.find('.login-input-password').simulate('change', mockPasswordEvent);
+
+      expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockPasswordEvent)
+    });
+
+    it('Should call getUser with an email and password when handleLogin is called', () => {
+      const mockEvent = { preventDefault: jest.fn() };
+
+      wrapper.setState({ email: 'h', password: 'h2', error: '' });
+    
+      wrapper.find('button').simulate('click', mockEvent);
+
+      expect(getUser).toHaveBeenCalledWith(wrapper.state.email, wrapper.state.password)
+    });
+  });
+
+  describe('mapState', () => {
+
+    it('Should return a login value of true', () => {
+      const mockState = { 
+        loggedIn: true,
+        movies: [ {movie: 'movie1'} ]
+      };
+      const expected = { isLoggedIn: true };
+
+      const mappedProps = mapState(mockState);
+
+      expect(mappedProps).toEqual(expected); 
+    })
+  });
+
+  describe('mapDispatch', () => {
+
+    it('Should call mapDispatch with a user when handleLogin is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = currentUser({ user: { id: 8, name: 'Rick' } });
+
+      const mappedProps = mapDispatch(mockDispatch);
+      mappedProps.currentUser({ user: { id: 8, name: 'Rick' } });
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+    });
+
+    it('Should call mapDispatch with a loggedIn boolean when handleLogin is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = loggedIn(true);
+
+      const mappedProps = mapDispatch(mockDispatch);
+      mappedProps.loggedIn(true);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+    });
+  });
+
 })

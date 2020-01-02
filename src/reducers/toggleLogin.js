@@ -7,6 +7,4 @@ export const loggedIn = (state = false, action) => {
     default:
       return state
   }
-
-
 };
