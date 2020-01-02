@@ -2,7 +2,7 @@ import React from 'react';
 import { Login, mapState, mapDispatch } from './Login';
 import { shallow } from 'enzyme';
 import { currentUser, loggedIn } from '../../actions/actions';
-
+import { getUser } from '../../apiCalls';
 
 describe('Login', () => {
   
@@ -38,18 +38,21 @@ describe('Login', () => {
 
     it('Should call handleChange when password input is changed', () => {
       wrapper.instance().handleChange = jest.fn();
-      const mockNameEvent = { target: {password: 'password', value:'password123'} }
+      const mockPasswordEvent = { target: {password: 'password', value:'password123'} }
 
-      wrapper.find('.login-input-password').simulate('change', mockNameEvent);
+      wrapper.find('.login-input-password').simulate('change', mockPasswordEvent);
 
-      expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockNameEvent)
+      expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockPasswordEvent)
     });
 
-    it('Should call getUser when handleLogin is called', () => {
+    it('Should call getUser with an email and password when handleLogin is called', () => {
       const mockEvent = { preventDefault: jest.fn() };
+
+      wrapper.setState({ email: 'h', password: 'h2', error: '' });
+    
       wrapper.find('button').simulate('click', mockEvent);
-      
-      expect(mockGetUser).toHaveBeenCalledTimes(1)
+
+      expect(getUser).toHaveBeenCalledWith(wrapper.state.email, wrapper.state.password)
     });
   });
 
