@@ -7,7 +7,7 @@ describe('Login', () => {
   
   let wrapper, mockEvent, mockGetUser
 
-  describe('Login Component', () => {
+  describe('login Component', () => {
 
     beforeEach(() => {
       mockEvent = { target: {name: 'email', value:'abc123@aol.com'} }
@@ -53,6 +53,18 @@ describe('Login', () => {
   });
 
   describe('mapState', () => {
+
+    it('Should return a login value of true', () => {
+      const mockState = { 
+        loggedIn: true,
+        movies: [ {movie: 'movie1'} ]
+      };
+      const expected = { isLoggedIn: true };
+
+      const mappedProps = mapState(mockState);
+
+      expect(mappedProps).toEqual(expected); 
+    })
 
   });
 
