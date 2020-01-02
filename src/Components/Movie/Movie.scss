@@ -1,11 +1,10 @@
-// <<<<<<< HEAD
-// =======
-@import '../../variables';
+@import '../../scss/variables';
 
 .movie-card {
   border: 1px solid black;
   height: 80vh;
   width: 50vh;
+  margin: 10px;
 }
 
 .movie-poster-img {
@@ -49,4 +48,3 @@
   width: 50%;
   font-family: $accent-font;
 }
-// >>>>>>> master
