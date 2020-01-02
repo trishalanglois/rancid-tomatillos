@@ -1,7 +1,7 @@
 import React from 'react';
 import { Login, mapState, mapDispatch } from './Login';
 import { shallow } from 'enzyme';
-import { currentUser } from '../../actions/actions';
+import { currentUser, loggedIn } from '../../actions/actions';
 
 
 describe('Login', () => {
@@ -66,7 +66,6 @@ describe('Login', () => {
 
       expect(mappedProps).toEqual(expected); 
     })
-
   });
 
   describe('mapDispatch', () => {
@@ -81,10 +80,15 @@ describe('Login', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
 
-    it('Should call mapDispatch with a user when handleLogin is called', () => {
+    it('Should call mapDispatch with a loggedIn boolean when handleLogin is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = loggedIn(true);
 
+      const mappedProps = mapDispatch(mockDispatch);
+      mappedProps.loggedIn(true);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
-
   });
 
 })
