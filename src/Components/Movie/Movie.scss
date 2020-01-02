@@ -1,21 +1,35 @@
-@import '../../variables';
+@import '../../scss/variables';
+@import '../../scss/mixins';
 
 .movie-card {
-  border: 1px solid black;
-  height: 80vh;
-  width: 50vh;
+  @include rounded-corners(5px);
+  height: 60vh;
+  width: 40vh;
+  margin: 1.5%;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+.movie-card:hover {
+  transform: scale(1.1);
 }
 
 .movie-poster-img {
-  height: 75%;
-  width: 100%;
+  @include rounded-corners(5px 5px 0px 0px);
+  height: 60vh;
+  width: 40vh;
   margin-bottom: -19px;
 }
 
 .movie-card-bottom {
-  background: rgb(133,143,143);
+  @include rounded-corners(0px 0px 5px 5px);
   background: linear-gradient(0deg, rgba(133,143,143,1) 0%, rgba(10,7,0,1) 100%);
   text-align: center;
+  width: 100%;
 }
 
 .movie-title {
@@ -26,7 +40,7 @@
 }
 
 .average-rating {
-  color: #FFAC33;
+  color: $gold;
   font-weight: bold;
   padding-top: .5em;
   font-family: $main-font
@@ -35,7 +49,7 @@
 
 .movie-button {
   background-color: #30BD9E;
-  border-radius: 20px;
+  @include rounded-corners(20px);
   font-size: 1.15em;
   margin-bottom: .75em;
     &:hover {
