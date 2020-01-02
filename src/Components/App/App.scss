@@ -17,11 +17,12 @@ body {
   rgba(60,24,128,1) 53%,
   rgba(98,26,185,1) 100%
   );
-  height: 100vh;
+  height: 120vh;
 }
 
 main {
   display: flex;
   overflow: auto;
   height: 100vh;
+  margin: 0;
 }
