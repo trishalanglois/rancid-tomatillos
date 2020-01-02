@@ -25,7 +25,7 @@ export class Login extends Component {
   handleLogin = (e) => {
     e.preventDefault()
     getUser(this.state.email, this.state.password)
-    .then(user => this.props.currentUser(user))
+    .then(user => console.log(user))
     .then(res => {
       if(this.props.currentUser) {
         this.props.loggedIn(true)
