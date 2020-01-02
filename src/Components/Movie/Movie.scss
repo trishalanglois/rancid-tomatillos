@@ -2,14 +2,14 @@
 
 .movie-card {
   border: 1px solid black;
-  height: 80vh;
-  width: 50vh;
-  margin: 10px;
+  height: 60vh;
+  width: 40vh;
+  margin: 2%;
 }
 
 .movie-poster-img {
-  height: 75%;
-  width: 100%;
+  height: 60vh;
+  width: 40vh;
   margin-bottom: -19px;
 }
 
@@ -17,6 +17,7 @@
   background: rgb(133,143,143);
   background: linear-gradient(0deg, rgba(133,143,143,1) 0%, rgba(10,7,0,1) 100%);
   text-align: center;
+  width: 100%;
 }
 
 .movie-title {
@@ -27,7 +28,7 @@
 }
 
 .average-rating {
-  color: #FFAC33;
+  color: $gold;
   font-weight: bold;
   padding-top: .5em;
   font-family: $main-font
