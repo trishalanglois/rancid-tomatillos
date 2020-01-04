@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './MovieShowPage.scss';
+import { postRating } from '../../apiCalls';
 import { connect } from 'react-redux';
+import { currentUser } from '../../reducers/currentUser';
 
 class MovieShowPage extends Component {
   constructor(props) {
@@ -10,8 +12,17 @@ class MovieShowPage extends Component {
     }
   }
 
+  handleChange = (e) => {
+    this.setState({ [e.target.name]: Number(e.target.value) })
+  }
+
+  submitRating = (rating, movieId, userId) => {
+    postRating(rating, movieId, userId)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
+
   render() {
-    console.log(this.props)
       return (
         <main>
           <article>
@@ -24,7 +35,12 @@ class MovieShowPage extends Component {
             <div>{this.props.currentMovie.user_rating}</div>
             <div className='rating-div'>
               <label>Rate This Movie</label>
-              <select className='rating-selector'>
+              <select 
+              className='rating-selector'
+              name='rating'
+              value={this.state.rating}
+              onChange={ (e) => this.handleChange(e) }
+              >
                 <option value='1'>1</option>
                 <option value='2'>2</option>
                 <option value='3'>3</option>
@@ -36,7 +52,7 @@ class MovieShowPage extends Component {
                 <option value='9'>9</option>
                 <option value='10'>10</option>
               </select>
-              <button>Submit Rating</button>
+              <button onClick={ () => this.submitRating(this.state.rating, this.props.currentMovie.id, this.props.currentUser.id) }>Submit Rating</button>
             </div>
             <p>{this.props.currentMovie.overview}</p>
           </article>
@@ -46,7 +62,8 @@ class MovieShowPage extends Component {
 }
 
 export const mapState = state => ({
-  currentMovie: state.currentMovie
+  currentMovie: state.currentMovie,
+  currentUser: state.currentUser
 })
 
 export default connect(mapState)(MovieShowPage)

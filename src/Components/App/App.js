@@ -7,7 +7,7 @@ import Login from '../Login/Login'
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import MovieShowPage from '../MovieShowPage/MovieShowPage';
-import { fetchMovies } from '../../apiCalls'
+import { fetchMovies } from '../../apiCalls';
 
 class App extends Component {
   constructor() {
