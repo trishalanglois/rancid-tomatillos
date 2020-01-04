@@ -20,3 +20,8 @@ export const getCurrentMovie = movie => ({
   movie
 });
 
+export const getRatings = ratings => ({
+  type: 'GET_RATINGS',
+  ratings
+});
+
