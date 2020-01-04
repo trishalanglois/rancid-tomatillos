@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './Login.scss';
-import { getUser } from '../../apiCalls';
+import { getUser, getUserRatings } from '../../apiCalls';
 import { connect } from 'react-redux';
 import { currentUser, loggedIn } from '../../actions/actions';
 import { Redirect } from 'react-router-dom';
 import Error from '../Error/Error'
+import { resolve } from 'dns';
 
 
 export class Login extends Component {
@@ -22,15 +23,20 @@ export class Login extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  handleLogin = (e) => {
+  handleLogin = async (e) => {
     e.preventDefault()
-    getUser(this.state.email, this.state.password)
-    .then(user => this.props.currentUser(user))
-    .then(res => {
-      if(this.props.currentUser) {
-        this.props.loggedIn(true)
-      }})
-    .catch(err => this.setState({error: 'Invalid Login, Please Try Again'}))
+    const userInfo = await getUser(this.state.email, this.state.password)
+    this.props.currentUser(userInfo)
+    if(this.props.currentUser) {
+      this.props.loggedIn(true)
+    }
+    this.handleGetUserRatings(userInfo.user.id)
+  }
+  
+  handleGetUserRatings = (userId) => {
+    getUserRatings(userId)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
   }
 
   render() {
