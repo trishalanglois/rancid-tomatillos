@@ -3,6 +3,8 @@ import { Login, mapState, mapDispatch } from './Login';
 import { shallow } from 'enzyme';
 import { currentUser, loggedIn } from '../../actions/actions';
 import { getUser } from '../../apiCalls';
+jest.mock('../../apiCalls')
+
 
 describe('Login', () => {
   
@@ -47,12 +49,14 @@ describe('Login', () => {
 
     it('Should call getUser with an email and password when handleLogin is called', () => {
       const mockEvent = { preventDefault: jest.fn() };
-
-      wrapper.setState({ email: 'h', password: 'h2', error: '' });
-    
+      getUser.mockImplementation(() => {
+        return Promise.resolve() 
+      });
+     
+      wrapper.setState({ email: 'abc123@aol.com', password: 'password123', error: '' });
       wrapper.find('button').simulate('click', mockEvent);
 
-      expect(getUser).toHaveBeenCalledWith(wrapper.state.email, wrapper.state.password)
+      expect(getUser).toHaveBeenCalledWith('abc123@aol.com', 'password123')
     });
   });
 
