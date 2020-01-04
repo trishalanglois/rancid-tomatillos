@@ -18,3 +18,4 @@ export const getCurrentMovie = movie => ({
   type: 'GET_MOVIE',
   movie
 });
+

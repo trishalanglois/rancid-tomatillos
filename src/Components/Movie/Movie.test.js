@@ -15,7 +15,7 @@ describe('Movie', () => {
     type: 'GET_MOVIE'
   }
 
-  it.skip('should match the snapshot', () => {
+  it('should match the snapshot', () => {
     let wrapper = shallow(<Movie
       movie={mockProps.movie}
       type={mockProps.type}

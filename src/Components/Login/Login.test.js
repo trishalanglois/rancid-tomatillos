@@ -10,7 +10,7 @@ describe('Login', () => {
   
   let wrapper, mockEvent, mockGetUser
 
-  describe('login Component', () => {
+  describe('Login Component', () => {
 
     beforeEach(() => {
       mockEvent = { target: {name: 'email', value:'abc123@aol.com'} }
