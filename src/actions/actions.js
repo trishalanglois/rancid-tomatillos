@@ -6,7 +6,8 @@ export const getMovies = movies => ({
 export const currentUser = user => ({
   type: 'SET_CURRENT_USER',
   name: user.user.name,
-  id: user.user.id
+  id: user.user.id,
+  ratings: []
 });
 
 export const loggedIn = loggedIn => ({
