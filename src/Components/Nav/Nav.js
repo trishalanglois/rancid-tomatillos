@@ -13,11 +13,11 @@ export const Nav = ({ isLoggedIn, login }) => {
     </header>
     {!isLoggedIn ?
       <Link to='/login'>
-        <button type='button'>Login</button>
+        <button className='login-button' type='button'>Login</button>
       </Link>
         :
       <Link to='/'>
-        <button type='button' onClick={() => login(false)}>Logout</button>
+        <button className='login-button' type='button' onClick={() => login(false)}>Logout</button>
       </Link>
     }
     </div>
