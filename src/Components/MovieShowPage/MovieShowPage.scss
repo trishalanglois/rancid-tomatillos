@@ -52,6 +52,16 @@ h2 {
   height: 40%;
   font-family: $accent-font;
   font-size: larger;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+.rate-movie-button:hover {
+  transform: scale(1.1);
 }
 
 .rating-div {
