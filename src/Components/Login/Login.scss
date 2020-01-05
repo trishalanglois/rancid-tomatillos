@@ -1,0 +1,19 @@
+@import '../../scss/variables';
+
+.loader-wrapper {
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-text {
+  color: #fff;
+  font-family: $accent-font;
+}
+
+.projector {
+  height: 60vh;
+  width: 63vw;
+}

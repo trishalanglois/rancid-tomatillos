@@ -1,12 +1,13 @@
 import React from 'react';
 import './MoviesContainer.scss';
 import Movie from '../Movie/Movie';
+import Loader from '../Loader/Loader';
 import { connect } from 'react-redux';
 
 const MoviesContainer = (props) => {
   const { movies } = props;
   if (!movies.length){
-    return <h1>Loading...</h1>
+    return <Loader />
   }
     const displayMovies = movies.map(movie => {
       return(
