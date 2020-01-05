@@ -1,4 +1,5 @@
 @import '../../scss/variables';
+@import '../../scss/mixins';
 
 .loader-wrapper {
   display: flex;
@@ -16,4 +17,5 @@
 .projector {
   height: 60vh;
   width: 63vw;
+  @include rounded-corners(5px);
 }
