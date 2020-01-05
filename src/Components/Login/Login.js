@@ -31,7 +31,7 @@ export class Login extends Component {
     }
     this.handleGetUserRatings(userInfo.user.id)
   }
-  
+
   handleGetUserRatings = (userId) => {
     getUserRatings(userId)
       .then(res => this.props.getRatings(res.ratings))
@@ -46,7 +46,8 @@ export class Login extends Component {
     }
     return (
       <form>
-        <label for='user-email'>email</label>
+      <div className="input-wrapper">
+        <label className="login-label" for='user-email'>email</label>
         <input
           className='login-input login-input-email'
           value={this.state.name}
@@ -54,7 +55,9 @@ export class Login extends Component {
           type='text'
           onChange={(e) => this.handleChange(e)}
         />
-        <label for='user-password'>Password</label>
+      </div>
+      <div className="input-wrapper">
+        <label className="login-label" for='user-password'>password</label>
         <input
           className='login-input login-input-password'
           value={this.state.password}
@@ -63,12 +66,14 @@ export class Login extends Component {
           onChange={(e) => this.handleChange(e)}
         />
         <button
+          className="login-button"
           type='button'
           onClick={(e) => this.handleLogin(e)}
         >
           Login
         </button>
-      </form>
+      </div>
+    </form>
     )
   }
 }
