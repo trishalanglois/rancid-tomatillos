@@ -44,7 +44,14 @@
   font-weight: bold;
   padding-top: .5em;
   font-family: $main-font
+}
 
+.user-rating {
+  @extend .average-rating;
+  padding-top: 0em;
+  margin: -1em 0em 0em 0em;
+  font-weight: normal;
+  font-style: italic;
 }
 
 .movie-button {
