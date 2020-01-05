@@ -17,13 +17,13 @@ form {
 
 .login-label {
   color: #fff;
-  font-size: 1.5em;
+  font-size: 1.75em;
   font-family: $accent-font;
 }
 
 .login-input {
   margin: 1em 0em 1.5em 0em;
-  font-size: 1.25em;
+  font-size: 1.5em;
   padding: .15em
 }
 
@@ -31,7 +31,7 @@ form {
   width: 100%;
   background-color: #30BD9E;
   @include rounded-corners(20px);
-  font-size: 1.15em;
+  font-size: 1.5em;
   border: none;
   padding: .35em;
   font-family: $accent-font;
