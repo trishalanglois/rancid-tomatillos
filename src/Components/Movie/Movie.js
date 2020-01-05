@@ -11,8 +11,10 @@ export const Movie = (props) => {
   }
 
   return(
-    <section className="movie-card">
+    <section className="movie-card" onClick={() => props.getCurrentMovie(props.movie)}>
+      <Link to={`/movies/${props.movie.id}`}>
       <img className='movie-poster-img' src={props.movie.poster_path}/>
+      </Link>
       <div className="movie-card-bottom">
         <p className="average-rating">
         Avg. Rating: {Math.round(props.movie.average_rating)} / 10

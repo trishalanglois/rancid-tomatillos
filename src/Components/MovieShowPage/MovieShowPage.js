@@ -30,41 +30,41 @@ class MovieShowPage extends Component {
       return (
         <main>
           <article>
-            <div>
-              <h2>{this.props.currentMovie.title}</h2>
-              <h2>Avg Rating: {this.props.currentMovie.average_rating}</h2>
-              {
-                !movieRating ?  
-                <div className='rating-div'>
-                    <label>Rate This Movie</label>
-                    <select 
-                    className='rating-selector'
-                    name='rating'
-                    value={this.state.rating}
-                    onChange={ (e) => this.handleChange(e) }
-                    >
-                      <option value='1'>1</option>
-                      <option value='2'>2</option>
-                      <option value='3'>3</option>
-                      <option value='4'>4</option>
-                      <option value='5'>5</option>
-                      <option value='6'>6</option>
-                      <option value='7'>7</option>
-                      <option value='8'>8</option>
-                      <option value='9'>9</option>
-                      <option value='10'>10</option>
-                    </select>
-                    <button onClick={ () => this.submitRating(this.state.rating, this.props.currentMovie.id, this.props.currentUser.id) }>Submit Rating</button>
-                  </div> 
-                  :
-
-                <h2>Your Rating: {this.props.ratings.find(rating => rating.movie_id === this.props.currentMovie.id).rating}</h2>
-                }
-              <h2>{this.props.currentMovie.release_date}</h2>
-            </div>
             <img className='movie-backdrop' src={this.props.currentMovie.backdrop_path} alt='large image with characters from film' />
-            <div>{this.props.currentMovie.user_rating}</div>
-            <p>{this.props.currentMovie.overview}</p>
+            <section className='show-page-info'>
+                <h2>{this.props.currentMovie.title}</h2>
+                <h3>{this.props.currentMovie.release_date}</h3>
+                <h3>Average Rating: {Math.round(this.props.currentMovie.average_rating)}</h3>
+                {
+                  !movieRating ?  
+                  <div className='rating-div'>
+                      <label>Rate This Movie</label>
+                      <select 
+                      className='rating-selector'
+                      name='rating'
+                      value={this.state.rating}
+                      onChange={ (e) => this.handleChange(e) }
+                      >
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                        <option value='6'>6</option>
+                        <option value='7'>7</option>
+                        <option value='8'>8</option>
+                        <option value='9'>9</option>
+                        <option value='10'>10</option>
+                      </select>
+                      <button className='rate-movie-button' onClick={ () => this.submitRating(this.state.rating, this.props.currentMovie.id, this.props.currentUser.id) }>Submit Rating</button>
+                    </div> 
+                    :
+
+                  <h3>Your Rating: {this.props.ratings.find(rating => rating.movie_id === this.props.currentMovie.id).rating}</h3>
+                  }
+              <div>{this.props.currentMovie.user_rating}</div>
+              <p>{this.props.currentMovie.overview}</p>
+            </section>
           </article>
         </main>
       )

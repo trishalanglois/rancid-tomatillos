@@ -6,21 +6,18 @@ import { loggedIn } from '../../actions/actions';
 
 export const Nav = ({ isLoggedIn, login }) => {
   return(
-    <div className='Nav-div'>
     <header>
-      <img  />
-      <h1>Rancid</h1>
-    </header>
+      <h1 className='rancid-title'>Rancid</h1>
     {!isLoggedIn ?
       <Link to='/login'>
-        <button type='button'>Login</button>
+        <button className='login-button' type='button'>Login</button>
       </Link>
         :
-      <Link to='/'>
-        <button type='button' onClick={() => login(false)}>Logout</button>
+        <Link to='/'>
+        <button className='login-button' type='button' onClick={() => login(false)}>Logout</button>
       </Link>
     }
-    </div>
+    </header>
   )
 }
 
