@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './Login.scss';
-import { getUser } from '../../apiCalls';
+import { getUser, getUserRatings } from '../../apiCalls';
 import { connect } from 'react-redux';
-import { currentUser, loggedIn } from '../../actions/actions';
+import { currentUser, loggedIn, getRatings } from '../../actions/actions';
 import { Redirect } from 'react-router-dom';
-import Error from '../Error/Error'
+import Error from '../Error/Error';
 
 
 export class Login extends Component {
@@ -22,15 +22,20 @@ export class Login extends Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  handleLogin = (e) => {
+  handleLogin = async (e) => {
     e.preventDefault()
-    getUser(this.state.email, this.state.password)
-    .then(user => this.props.currentUser(user))
-    .then(res => {
-      if(this.props.currentUser) {
-        this.props.loggedIn(true)
-      }})
-    .catch(err => this.setState({error: 'Invalid Login, Please Try Again'}))
+    const userInfo = await getUser(this.state.email, this.state.password)
+    this.props.currentUser(userInfo)
+    if(this.props.currentUser) {
+      this.props.loggedIn(true)
+    }
+    this.handleGetUserRatings(userInfo.user.id)
+  }
+  
+  handleGetUserRatings = (userId) => {
+    getUserRatings(userId)
+      .then(res => this.props.getRatings(res.ratings))
+      .catch(err => console.log(err))
   }
 
   render() {
@@ -74,7 +79,8 @@ export const mapState = state => ({
 
 export const mapDispatch = dispatch => ({
   currentUser: user => dispatch(currentUser(user)),
-  loggedIn: boolean => dispatch(loggedIn(boolean))
+  loggedIn: boolean => dispatch(loggedIn(boolean)),
+  getRatings: ratings => dispatch(getRatings(ratings))
 })
 
 export default connect(mapState, mapDispatch)(Login);
