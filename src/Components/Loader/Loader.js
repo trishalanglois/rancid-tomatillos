@@ -1,10 +1,14 @@
 import React from 'react';
 import './Loader.scss';
+import projector from '../../images/film_projector.gif'
 
 const Loader = () => {
   return (
-    <>
-      <img src='../../images/film_projector.gif' alt='old timey film projector' />
-    </>
+    <main className="loader-wrapper">
+      <h2 className="loading-text">Loading Movies...</h2>
+      <img className="projector" src={projector} alt='image of film projector to show page loading' />
+    </main>
   )
 }
+
+export default Loader;
