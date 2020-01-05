@@ -72,3 +72,13 @@ h2 {
   flex-direction: row;
   justify-content: space-around;
 }
+
+select {
+  width: 25%;
+  height: 40%;
+}
+
+label {
+  font-size: larger;
+  font-family: $accent-font;
+}
