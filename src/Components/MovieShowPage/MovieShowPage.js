@@ -34,7 +34,7 @@ class MovieShowPage extends Component {
             <section className='show-page-info'>
                 <h2>{this.props.currentMovie.title}</h2>
                 <h3>{this.props.currentMovie.release_date}</h3>
-                <h3>Average Rating: {(this.props.currentMovie.average_rating).toFixed(2)}</h3>
+                <h3>Average Rating: {Math.round(this.props.currentMovie.average_rating)}</h3>
                 {
                   !movieRating ?  
                   <div className='rating-div'>

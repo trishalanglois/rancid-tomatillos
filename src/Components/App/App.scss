@@ -1,14 +1,6 @@
 @import '../../scss/mixins';
 @import '../../scss/variables';
 
-.Nav-div {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  height: 10%;
-}
-
 body {
   background: rgb(54,18,91);
   background: linear-gradient(
@@ -18,6 +10,7 @@ body {
   rgba(98,26,185,1) 100%
   );
   height: 120vh;
+  width: 100%;
 }
 
 main {
