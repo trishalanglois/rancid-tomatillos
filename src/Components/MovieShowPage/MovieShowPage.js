@@ -56,7 +56,7 @@ class MovieShowPage extends Component {
                         <option value='9'>9</option>
                         <option value='10'>10</option>
                       </select>
-                      <button onClick={ () => this.submitRating(this.state.rating, this.props.currentMovie.id, this.props.currentUser.id) }>Submit Rating</button>
+                      <button className='rate-movie-button' onClick={ () => this.submitRating(this.state.rating, this.props.currentMovie.id, this.props.currentUser.id) }>Submit Rating</button>
                     </div> 
                     :
 
