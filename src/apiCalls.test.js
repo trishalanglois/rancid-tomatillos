@@ -1,4 +1,4 @@
-import { fetchMovies, getUser } from './apiCalls';
+import { fetchMovies, getUser, postRating } from './apiCalls';
 
 describe('apiCalls', () => {
   describe('fetchMovies', () => {
@@ -81,6 +81,78 @@ describe('apiCalls', () => {
       getUser(mockEmail, mockPassword)
 
       expect(window.fetch).toHaveBeenCalledWith('https://rancid-tomatillos.herokuapp.com/api/v1/login', mockOptions)
+    })
+
+    it('should return a user object', () => {
+      expect(getUser(mockEmail, mockPassword)).resolves.toEqual(mockResponse)
+    })
+
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(getUser(mockEmail, mockPassword)).rejects.toEqual(Error('Something is not right, try again later'))
+    }) 
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(getUser(mockEmail, mockPassword)).rejects.toEqual(Error('fetch failed'))
+    })
+  })
+
+  describe('postRating', () => {
+    let mockResponse 
+    let mockRating
+    let mockMovieId
+    let mockUserId
+    let mockOptions
+  
+    beforeEach(() => {
+      mockResponse = {
+        id: 210,
+        user_id: 8,
+        movie_id: 11,
+        rating: 7,
+        created_at: "2020-01-04T20:37:36.154Z",
+        updated_at: "2020-01-04T20:37:36.154Z"
+      }
+
+      mockRating = {
+        "rating": {
+            "user_id": 8,
+            "movie_id": 11,
+            "rating": 7
+        }
+      }
+      mockMovieId = 11
+      mockUserId = 8
+      mockOptions = {
+        "body": "{\"rating\":{\"rating\":{\"user_id\":8,\"movie_id\":11,\"rating\":7}},\"movie_id\":11}", "headers": {
+         "Content-Type": "application/json",
+       },
+       "method": "POST"
+      }
+
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => {
+            return Promise.resolve(mockResponse)
+          }
+        })
+      })
+    })
+
+    it('should call fetch with the correct URL', () => {
+      postRating(mockRating, mockMovieId, mockUserId)
+
+      expect(window.fetch).toHaveBeenCalledWith('https://rancid-tomatillos.herokuapp.com/api/v1/users/8/ratings', mockOptions)
     })
 
     it('should return a user object', () => {
