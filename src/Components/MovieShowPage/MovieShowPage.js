@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { currentUser } from '../../reducers/currentUser';
 import PropTypes from 'prop-types';
 
-class MovieShowPage extends Component {
+export class MovieShowPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
