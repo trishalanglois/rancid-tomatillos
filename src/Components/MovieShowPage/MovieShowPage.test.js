@@ -39,4 +39,19 @@ describe('MovieShowPage', () => {
     it('Should match the snapshot', () => {
       expect(wrapper).toMatchSnapshot()
     });
+
+    describe('handleChange', () => {
+      it('should update state when handleChange is invoked', () => {
+        const mockDefaultState = {rating: null}
+        const mockEvent = {target: {name: 'rating', value: '1' }}
+  
+        expect(wrapper.state()).toEqual(mockDefaultState)
+        wrapper.instance().handleChange(mockEvent)
+        expect(wrapper.state('rating')).toEqual(1)
+      })
+    })
+
+    describe('submitRating', () => {
+      it('should')
+    })
   });

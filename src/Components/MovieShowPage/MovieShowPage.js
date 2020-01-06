@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './MovieShowPage.scss';
 import { postRating } from '../../apiCalls';
 import { connect } from 'react-redux';
-import { currentUser } from '../../reducers/currentUser';
 
 export class MovieShowPage extends Component {
   constructor(props) {
