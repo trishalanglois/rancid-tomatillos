@@ -166,7 +166,7 @@ describe('apiCalls', () => {
         })
       })
 
-      expect(getUser(mockEmail, mockPassword)).rejects.toEqual(Error('Something is not right, try again later'))
+      expect(postRating(mockRating, mockMovieId, mockUserId)).rejects.toEqual(Error('Error posting rating'))
     }) 
 
     it('should return an error if promise rejects', () => {
