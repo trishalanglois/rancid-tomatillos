@@ -31,7 +31,8 @@ describe('currentMovie Reducer', () => {
         average_rating:6.857142857142857
         }
       ]
-    const action = { type: 'GET_MOVIE',
+    const action = { 
+      type: 'GET_MOVIE',
       id:1,
       title:"Jumanji: The Next Level",
       poster_path:"https://image.tmdb.org/t/p/original//l4iknLOenijaB85Zyb5SxH1gGz8.jpg",

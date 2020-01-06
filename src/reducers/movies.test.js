@@ -14,7 +14,6 @@ describe('movies Reducer', () => {
     const initialState = [];
 
     const mockMovie = {
-      type: 'GET_MOVIES',
       id:3,
       title:"Frozen II",
       poster_path:"https://image.tmdb.org/t/p/original//pjeMs3yqRmFL3giJy4PMXWZTTPa.jpg",
@@ -25,11 +24,11 @@ describe('movies Reducer', () => {
     }
     const action = { 
         type: 'GET_MOVIES',
-        mockMovie
+        movies: [ mockMovie ]
       }
 
     const result = getMovies(initialState, action);
-    const expected = [ ...initialState, ...action ];
+    const expected = [ ...initialState, ...action.movies ];
 
     expect(result).toEqual(expected)
   });

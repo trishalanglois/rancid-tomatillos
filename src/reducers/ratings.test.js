@@ -10,19 +10,24 @@ describe('ratings Reducer', () => {
     expect(result).toEqual(expected);
   });
 
-  it('Should return the correct state if the correct action is GET_MOVIES', () => {
+  it('Should return the correct state if the correct action is GET_RATINGS', () => {
     const initialState = [];
-
     const mockMovie = {
-      type: 'GET_RATINGS',
+      id:210,
+      user_id:8,
+      movie_id:2,
+      rating:7,
+      created_at:"2020-01-04T20:37:36.154Z",
+      updated_at:"2020-01-04T20:37:36.154Z"
     }
+
     const action = { 
-        type: 'GET_MOVIES',
-        mockMovie
+        type: 'GET_RATINGS',
+        ratings: [ mockMovie ]
       }
 
-    const result = getMovies(initialState, action);
-    const expected = [ ...initialState, ...action ];
+    const result = getRatings(initialState, action);
+    const expected = action.ratings;
 
     expect(result).toEqual(expected)
   });
