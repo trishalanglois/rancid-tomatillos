@@ -56,13 +56,15 @@ describe('apiCalls', () => {
 
   describe('getUser', () => {
     let mockResponse = {user: {id: 1, name: "Alan", email: "alan@turing.io"}}
-    let mockURL
+    let mockEmail
+    let mockPassword
     let mockOptions
   
     beforeEach(() => {
-      mockURL = "https://rancid-tomatillos.herokuapp.com/api/v1/login"
+      mockEmail = 'rick@turing.io'
+      mockPassword = 'bbbbb'
       mockOptions = {
-        "body": "{\"email\":\"alan@turing.io\",\"password\":\"asdf123\"}", "headers": {"Content-Type": "application/json"}, "method": "POST"
+        "body": "{\"email\":\"rick@turing.io\",\"password\":\"bbbbb\"}", "headers": {"Content-Type": "application/json"}, "method": "POST"
       }
 
       window.fetch = jest.fn().mockImplementation(() => {
@@ -75,14 +77,32 @@ describe('apiCalls', () => {
       })
     })
 
-    it('should be passed the correct arguments', () => {
-      getUser('alan@turing.io', 'asdf123')
+    it('should call fetch with the correct URL', () => {
+      getUser(mockEmail, mockPassword)
 
-      expect(window.fetch).toHaveBeenCalledWith(mockURL, mockOptions)
+      expect(window.fetch).toHaveBeenCalledWith('https://rancid-tomatillos.herokuapp.com/api/v1/login', mockOptions)
     })
 
     it('should return a user object', () => {
-      expect(getUser(mockURL)).resolves.toEqual(mockResponse)
+      expect(getUser(mockEmail, mockPassword)).resolves.toEqual(mockResponse)
+    })
+
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(getUser(mockEmail, mockPassword)).rejects.toEqual(Error('Something is not right, try again later'))
+    }) 
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(getUser(mockEmail, mockPassword)).rejects.toEqual(Error('fetch failed'))
     })
   })
 })
