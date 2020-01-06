@@ -1,3 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Movie should match the snapshot 1`] = `ShallowWrapper {}`;
+exports[`Movie should match the snapshot 1`] = `
+"<section className=\\"movie-card\\" onClick={[Function: onClick]}>
+  <Link to=\\"/movies/1\\">
+    <img className=\\"movie-poster-img\\" src=\\"www.weewoo.com\\" />
+  </Link>
+  <div className=\\"movie-card-bottom\\">
+    <p className=\\"average-rating\\">
+      Avg. Rating: 
+      2
+       / 10
+    </p>
+    <h2 className=\\"movie-title\\">
+      Erties Dirties
+    </h2>
+    <Link to=\\"/movies/1\\">
+      <button className=\\"movie-button\\" onClick={[Function: onClick]}>
+        START THE SHOW
+      </button>
+    </Link>
+  </div>
+</section>"
+`;

@@ -21,7 +21,7 @@ describe('Movie', () => {
       type={mockProps.type}
     />)
 
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper.debug()).toMatchSnapshot()
   });
 
 describe('mapDispatch', () => {
