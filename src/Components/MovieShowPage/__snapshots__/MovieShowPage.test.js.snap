@@ -27,3 +27,67 @@ exports[`MovieShowPage MovieShowPage component Should match the snapshot 1`] = `
   </article>
 </main>"
 `;
+
+exports[`MovieShowPage MovieShowPage component should match the snapshot with no rating match 1`] = `
+"<main>
+  <article>
+    <img className=\\"movie-backdrop\\" src=\\"url.com\\" alt=\\"large image with characters from film\\" />
+    <section className=\\"show-page-info\\">
+      <h2>
+        Jumanji: The Next Level
+      </h2>
+      <h3>
+        2019-12-04
+      </h3>
+      <h3>
+        Average Rating: 
+        6
+      </h3>
+      <div className=\\"rating-div\\">
+        <label>
+          Rate This Movie
+        </label>
+        <select className=\\"rating-selector\\" name=\\"rating\\" value={{...}} onChange={[Function: onChange]}>
+          <option value=\\"1\\">
+            1
+          </option>
+          <option value=\\"2\\">
+            2
+          </option>
+          <option value=\\"3\\">
+            3
+          </option>
+          <option value=\\"4\\">
+            4
+          </option>
+          <option value=\\"5\\">
+            5
+          </option>
+          <option value=\\"6\\">
+            6
+          </option>
+          <option value=\\"7\\">
+            7
+          </option>
+          <option value=\\"8\\">
+            8
+          </option>
+          <option value=\\"9\\">
+            9
+          </option>
+          <option value=\\"10\\">
+            10
+          </option>
+        </select>
+        <button className=\\"rate-movie-button\\" onClick={[Function: onClick]}>
+          Submit Rating
+        </button>
+      </div>
+      <div />
+      <p>
+        description
+      </p>
+    </section>
+  </article>
+</main>"
+`;
