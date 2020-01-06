@@ -5,12 +5,11 @@ import { connect } from 'react-redux';
 import { currentUser, loggedIn, getRatings } from '../../actions/actions';
 import { Redirect } from 'react-router-dom';
 import Error from '../Error/Error';
-
+import PropTypes from 'prop-types';
 
 export class Login extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       email: '',
       password: '',
@@ -89,3 +88,10 @@ export const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(Login);
+
+Login.propTypes = {
+  currentUser: PropTypes.func,
+  loggedIn: PropTypes.func,
+  getRatings: PropTypes.func,
+  isLoggedIn: PropTypes.bool
+}
