@@ -1,3 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieShowPage Should match the snapshot 1`] = `ShallowWrapper {}`;
+exports[`MovieShowPage MovieShowPage component Should match the snapshot 1`] = `
+"<main>
+  <article>
+    <img className=\\"movie-backdrop\\" src=\\"url.com\\" alt=\\"large image with characters from film\\" />
+    <section className=\\"show-page-info\\">
+      <h2>
+        Jumanji: The Next Level
+      </h2>
+      <h3>
+        2019-12-04
+      </h3>
+      <h3>
+        Average Rating: 
+        6
+      </h3>
+      <h3>
+        Your Rating: 
+        3
+      </h3>
+      <div />
+      <p>
+        description
+      </p>
+    </section>
+  </article>
+</main>"
+`;
