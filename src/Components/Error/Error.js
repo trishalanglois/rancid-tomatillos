@@ -1,7 +1,7 @@
 import React from 'react';
 import './Error.scss';
 
-const Error = ({errorMessage}) => {
+export const Error = ({errorMessage}) => {
   return (
     <p>{errorMessage}</p>
   )
