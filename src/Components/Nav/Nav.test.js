@@ -1,10 +1,10 @@
 import React from 'react';
-import Loader from './Loader';
+import { Nav } from './Nav';
 import { shallow } from 'enzyme';
 
-describe('Loader', () => {
+describe('Nav', () => {
   it('should match the snapshot', () => {
-    let wrapper = shallow(<Loader />)
+    let wrapper = shallow(<Nav />)
     expect(wrapper.debug()).toMatchSnapshot()
   })
 })
