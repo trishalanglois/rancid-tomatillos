@@ -1,6 +1,6 @@
 import { currentMovie } from '../reducers/currentMovie';
 
-describe('Reducers', () => {
+describe('currentMovie Reducer', () => {
 
   it('Should return the initial state', () => {
     const expected = {};
