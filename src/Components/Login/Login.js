@@ -7,8 +7,6 @@ import { Redirect } from 'react-router-dom';
 import Error from '../Error/Error';
 import PropTypes from 'prop-types';
 
-
-
 export class Login extends Component {
   constructor(props) {
     super(props)
