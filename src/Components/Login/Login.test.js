@@ -2,7 +2,7 @@ import React from 'react';
 import { Login, mapState, mapDispatch } from './Login';
 import { shallow } from 'enzyme';
 import { currentUser, loggedIn } from '../../actions/actions';
-import { getUser } from '../../apiCalls';
+import { getUser, getUserRatings } from '../../apiCalls';
 jest.mock('../../apiCalls')
 
 
@@ -57,6 +57,19 @@ describe('Login', () => {
       wrapper.find('button').simulate('click', mockEvent);
 
       expect(getUser).toHaveBeenCalledWith('abc123@aol.com', 'password123')
+    });
+
+    
+
+    it('Should call getUserRatings with a userId when handleGetUserRatings is called', () => {
+      getUserRatings.mockImplementation(() => {
+        return Promise.resolve() 
+      });
+      const expected = 1;
+
+      wrapper.instance().handleGetUserRatings(expected);
+
+      expect(getUserRatings).toHaveBeenCalledWith(expected)
     });
   });
 

@@ -59,7 +59,6 @@ class MovieShowPage extends Component {
                       <button className='rate-movie-button' onClick={ () => this.submitRating(this.state.rating, this.props.currentMovie.id, this.props.currentUser.id) }>Submit Rating</button>
                     </div> 
                     :
-
                   <h3>Your Rating: {this.props.ratings.find(rating => rating.movie_id === this.props.currentMovie.id).rating}</h3>
                   }
               <div>{this.props.currentMovie.user_rating}</div>
@@ -74,7 +73,7 @@ class MovieShowPage extends Component {
 export const mapState = state => ({
   currentMovie: state.currentMovie,
   currentUser: state.currentUser,
-  ratings: state.ratings
+  ratings: state.ratings,
 })
 
 export default connect(mapState)(MovieShowPage)
