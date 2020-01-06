@@ -1,15 +1,15 @@
 import React from 'react';
-import App from './App';
 import { shallow } from 'enzyme';
+import { mapDispatch, App } from './App';
+import { getMovies } from '../../actions/actions';
+
 
 describe('App', () => {
-  let wrapper
+  let wrapper;
 
-  beforeEach(() => {
+  it('should match the snapshot', () => {
     wrapper = shallow(<App />)
-  })
 
-  it.skip('should match the snapshot', () => {
-    expect(wrapper).toMatchSnapshot()
+    expect(wrapper.debug()).toMatchSnapshot()
   })
 })
