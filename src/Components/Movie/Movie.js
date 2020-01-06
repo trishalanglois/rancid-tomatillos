@@ -29,7 +29,6 @@ export const Movie = (props) => {
   )
 }
 
-
 export const mapState = state => ({
   user: state.currentUser,
   ratings: state.ratings
