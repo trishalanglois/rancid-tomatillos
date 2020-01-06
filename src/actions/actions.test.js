@@ -23,10 +23,40 @@ describe('Actions', () => {
         average_rating:7.142857142857143
     }]
     const result = actions.getMovies(movies);
-
     const mockExpectedAction = {
       type: 'GET_MOVIES',
       movies
+    } 
+
+    expect(result).toEqual(mockExpectedAction);
+  });
+
+  it('Should have a type of SET_CURRENT_USER', () => {
+    const mockUser = { user: {
+      name: 'Garrett',
+      id: 28,
+      ratings: []
+    }}
+
+    const result = actions.currentUser(mockUser);
+    const mockExpectedAction = {
+      type: 'SET_CURRENT_USER',
+      name: 'Garrett',
+      id: 28,
+      ratings: []
+    } 
+
+    expect(result).toEqual(mockExpectedAction);
+  });
+
+
+  it('Should have a type of LOG_IN', () => {
+    const mockLoggedIn = true; 
+
+    const result = actions.loggedIn(mockLoggedIn);
+    const mockExpectedAction = {
+      type: 'LOG_IN',
+      loggedIn: true
     } 
 
     expect(result).toEqual(mockExpectedAction);
