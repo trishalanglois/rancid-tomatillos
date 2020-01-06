@@ -155,8 +155,8 @@ describe('apiCalls', () => {
       expect(window.fetch).toHaveBeenCalledWith('https://rancid-tomatillos.herokuapp.com/api/v1/users/8/ratings', mockOptions)
     })
 
-    it('should return a user object', () => {
-      expect(getUser(mockEmail, mockPassword)).resolves.toEqual(mockResponse)
+    it('should return a rating object', () => {
+      expect(postRating(mockRating, mockMovieId, mockUserId)).resolves.toEqual(mockResponse)
     })
 
     it('should throw an error if fetch fails', () => {
