@@ -2,7 +2,9 @@ import React from 'react';
 import { MovieShowPage, mapState }from './MovieShowPage';
 import { shallow } from 'enzyme';
 import { getCurrentMovie, currentUser, getRatings } from '../../actions/actions';
+import { postRating } from '../../apiCalls';
 
+jest.mock('../../apiCalls')
 
 describe('MovieShowPage', () => {
   let wrapper
@@ -66,8 +68,12 @@ describe('MovieShowPage', () => {
       it('should call postRatings with the right parameters', () => {
         const mockState = {rating: 1}
         wrapper.instance().setState(mockState)
-        wrapper.instance().submitRating = jest.fn()
+        postRating.mockImplementation(() => {
+          return Promise.resolve()
+      })
         wrapper.instance().submitRating(wrapper.state.rating, mockProps.currentMovie.id, mockProps.currentUser.id)
+
+        expect(postRating).toHaveBeenCalledWith(wrapper.state.rating, mockProps.currentMovie.id, mockProps.currentUser.id)
       })
     })
 
