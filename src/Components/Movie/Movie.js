@@ -34,6 +34,7 @@ export const mapState = state => ({
   user: state.currentUser,
   ratings: state.ratings
 })
+
 export const mapDispatch = dispatch => ({
   getCurrentMovie: movie => dispatch(getCurrentMovie(movie))
 })

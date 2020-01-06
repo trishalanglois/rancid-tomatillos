@@ -4,7 +4,7 @@ import Movie from '../Movie/Movie';
 import Loader from '../Loader/Loader';
 import { connect } from 'react-redux';
 
-const MoviesContainer = (props) => {
+export const MoviesContainer = (props) => {
   const { movies } = props;
   if (!movies.length){
     return <Loader />
@@ -25,7 +25,7 @@ const MoviesContainer = (props) => {
   )
 }
 
-const mapState = state => ({
+export const mapState = state => ({
   movies: state.movies
 });
 
