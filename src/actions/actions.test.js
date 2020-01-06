@@ -49,7 +49,6 @@ describe('Actions', () => {
     expect(result).toEqual(mockExpectedAction);
   });
 
-
   it('Should have a type of LOG_IN', () => {
     const mockLoggedIn = true; 
 
@@ -77,6 +76,35 @@ describe('Actions', () => {
     const mockExpectedAction = {
       type: 'GET_MOVIE',
       movie
+    } 
+
+    expect(result).toEqual(mockExpectedAction);
+  });
+
+  it('Should have a type of GET_RATINGS', () => {
+    const mockRatedMovies = [
+      {
+        id:413,
+        user_id:8,
+        movie_id:12,
+        rating:7,
+        created_at:"2020-01-06T18:19:17.930Z",
+        updated_at:"2020-01-06T18:19:17.930Z"
+      },
+      {
+        id:399,
+        user_id:8,
+        movie_id:5,
+        rating:4,
+        created_at:"2020-01-06T00:27:11.943Z",
+        updated_at:"2020-01-06T00:27:11.943Z"
+      } 
+    ]
+
+    const result = actions.getRatings(mockRatedMovies);
+    const mockExpectedAction = {
+      type: 'GET_RATINGS',
+      ratings: mockRatedMovies
     } 
 
     expect(result).toEqual(mockExpectedAction);
