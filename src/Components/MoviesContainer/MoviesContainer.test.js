@@ -3,10 +3,6 @@ import { MoviesContainer, mapState } from './MoviesContainer';
 import { shallow } from 'enzyme';
 
 describe('MoviesContainer', () => {
-  // beforeEach(() => {
-  //
-  // })
-
   it('should match the snapshot when there are movies in state', () => {
     let mockProps = {
       movies: [{
@@ -16,7 +12,6 @@ describe('MoviesContainer', () => {
         poster_path: 'www.weewoo.com'
       }]
     }
-    
     let wrapper = shallow(<MoviesContainer
       movies={mockProps.movies}
     />)
