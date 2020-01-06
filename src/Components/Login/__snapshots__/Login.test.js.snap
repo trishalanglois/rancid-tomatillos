@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login Login Component Should match the snapshot 1`] = `
+exports[`Login Login Component Should match the snapshot when there is no error in state 1`] = `
 "<form>
   <div className=\\"input-wrapper\\">
     <label className=\\"login-label\\" for=\\"user-email\\">
@@ -19,3 +19,5 @@ exports[`Login Login Component Should match the snapshot 1`] = `
   </div>
 </form>"
 `;
+
+exports[`Login Login Component should match the snapshot when there is an error in state 1`] = `"<Error errorMessage=\\"YOU DID SOMETHING WRONG!!!!!\\" />"`;

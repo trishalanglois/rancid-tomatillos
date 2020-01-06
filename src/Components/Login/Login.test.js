@@ -7,20 +7,24 @@ jest.mock('../../apiCalls')
 
 
 describe('Login', () => {
-
   let wrapper, mockEvent, mockGetUser
 
   describe('Login Component', () => {
-
     beforeEach(() => {
       mockEvent = { target: {name: 'email', value:'abc123@aol.com'} }
       mockGetUser = jest.fn()
       wrapper = shallow(<Login />)
     });
 
-    it('Should match the snapshot', () => {
+    it('Should match the snapshot when there is no error in state', () => {
       expect(wrapper.debug()).toMatchSnapshot()
     });
+
+    it('should match the snapshot when there is an error in state', () => {
+      wrapper.setState({ error: 'YOU DID SOMETHING WRONG!!!!!' })
+
+      expect(wrapper.debug()).toMatchSnapshot();
+    })
 
     it('Should setState when handleChange is called', () => {
       wrapper.setState({ email: '', password:'', error: '' });
