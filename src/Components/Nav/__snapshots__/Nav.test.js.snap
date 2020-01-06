@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav should match the snapshot 1`] = `
+"<header>
+  <h1 className=\\"rancid-title\\">
+    Rancid
+  </h1>
+  <Link to=\\"/login\\">
+    <button className=\\"login-button\\" type=\\"button\\">
+      Login
+    </button>
+  </Link>
+</header>"
+`;

@@ -3,6 +3,7 @@ import './Movie.scss';
 import { Link } from 'react-router-dom';
 import { getCurrentMovie } from '../../actions/actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 export const Movie = (props) => {
   let userRating;
@@ -29,13 +30,20 @@ export const Movie = (props) => {
   )
 }
 
-
 export const mapState = state => ({
   user: state.currentUser,
   ratings: state.ratings
 })
+
 export const mapDispatch = dispatch => ({
   getCurrentMovie: movie => dispatch(getCurrentMovie(movie))
 })
 
 export default connect(mapState, mapDispatch)(Movie)
+
+Movie.propTypes = {
+  user: PropTypes.object,
+  ratings: PropTypes.array,
+  movie: PropTypes.object,
+  getCurrentMovie: PropTypes.func
+}

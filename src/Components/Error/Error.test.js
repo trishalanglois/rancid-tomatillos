@@ -1,5 +1,5 @@
 import React from 'react';
-import Error from './Error';
+import { Error } from './Error';
 import { shallow } from 'enzyme';
 
 describe('Error', () => {
@@ -9,7 +9,7 @@ describe('Error', () => {
     wrapper = shallow(<Error />)
   })
 
-  it.skip('should match the snapshot', () => {
-    expect(wrapper).toMatchSnapshot()
+  it('should match the snapshot', () => {
+    expect(wrapper.debug()).toMatchSnapshot()
   })
 })

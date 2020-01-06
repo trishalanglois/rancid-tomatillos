@@ -3,6 +3,7 @@ import './Nav.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loggedIn } from '../../actions/actions';
+import PropTypes from 'prop-types';
 
 export const Nav = ({ isLoggedIn, login }) => {
   return(
@@ -30,3 +31,8 @@ export const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(Nav);
+
+Nav.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  login: PropTypes.func
+}

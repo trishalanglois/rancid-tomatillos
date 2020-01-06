@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './MovieShowPage.scss';
 import { postRating } from '../../apiCalls';
 import { connect } from 'react-redux';
+import { currentUser } from '../../reducers/currentUser';
+import PropTypes from 'prop-types';
 
 export class MovieShowPage extends Component {
   constructor(props) {
@@ -35,10 +37,10 @@ export class MovieShowPage extends Component {
                 <h3>{this.props.currentMovie.release_date}</h3>
                 <h3>Average Rating: {Math.round(this.props.currentMovie.average_rating)}</h3>
                 {
-                  !movieRating ?  
+                  !movieRating ?
                   <div className='rating-div'>
                       <label>Rate This Movie</label>
-                      <select 
+                      <select
                       className='rating-selector'
                       name='rating'
                       value={this.state.rating}
@@ -56,9 +58,8 @@ export class MovieShowPage extends Component {
                         <option value='10'>10</option>
                       </select>
                       <button className='rate-movie-button' onClick={ () => this.submitRating(this.state.rating, this.props.currentMovie.id, this.props.currentUser.id) }>Submit Rating</button>
-                    </div> 
+                    </div>
                     :
-
                   <h3>Your Rating: {this.props.ratings.find(rating => rating.movie_id === this.props.currentMovie.id).rating}</h3>
                   }
               <div>{this.props.currentMovie.user_rating}</div>
@@ -73,7 +74,12 @@ export class MovieShowPage extends Component {
 export const mapState = state => ({
   currentMovie: state.currentMovie,
   currentUser: state.currentUser,
-  ratings: state.ratings
+  ratings: state.ratings,
 })
 
 export default connect(mapState)(MovieShowPage)
+
+MovieShowPage.propTypes = {
+  ratings: PropTypes.array,
+  currentMovie: PropTypes.object
+}
