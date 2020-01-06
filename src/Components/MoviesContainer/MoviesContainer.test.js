@@ -19,6 +19,17 @@ describe('MoviesContainer', () => {
     expect(wrapper.debug()).toMatchSnapshot()
   })
 
+  it('should match the snapshot when there are no movies in state', () => {
+    let mockProps = {
+      movies: []
+    }
+    let wrapper = shallow(<MoviesContainer
+      movies={mockProps.movies}
+    />)
+
+    expect(wrapper.debug()).toMatchSnapshot()
+  })
+
   describe('mapState', () => {
     it('should return an object with the movies data', () => {
       const mockState = {

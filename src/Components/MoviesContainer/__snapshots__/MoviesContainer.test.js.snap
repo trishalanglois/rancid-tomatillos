@@ -5,3 +5,5 @@ exports[`MoviesContainer should match the snapshot when there are movies in stat
   <Connect(Movie) movie={{...}} />
 </Fragment>"
 `;
+
+exports[`MoviesContainer should match the snapshot when there are no movies in state 1`] = `"<Loader />"`;
