@@ -1,7 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MovieShowPage MovieShowPage Component Should match the snapshot 1`] = `undefined`;
-
-exports[`MovieShowPage movieShowPage Component Should match the snapshot 1`] = `undefined`;
-
-exports[`MovieShowPage movieShowPage Component should match the snapshot 1`] = `undefined`;
+exports[`MovieShowPage Should match the snapshot 1`] = `ShallowWrapper {}`;
