@@ -1,4 +1,4 @@
-import { fetchMovies, getUser, postRating } from './apiCalls';
+import { fetchMovies, getUser, postRating, getUserRatings } from './apiCalls';
 
 describe('apiCalls', () => {
   describe('fetchMovies', () => {
@@ -175,6 +175,63 @@ describe('apiCalls', () => {
       })
 
       expect(postRating(mockRating, mockMovieId, mockUserId)).rejects.toEqual(Error('fetch failed'))
+    })
+  })
+
+  describe('getUserRatings', () => {
+    let mockResponse
+    let mockUserId
+
+    beforeEach(() => {
+      mockResponse = {
+        "ratings": [
+            {
+                "id": 210,
+                "user_id": 8,
+                "movie_id": 2,
+                "rating": 7,
+                "created_at": "2020-01-04T20:37:36.154Z",
+                "updated_at": "2020-01-04T20:37:36.154Z"
+            }
+        ]
+      }
+      
+      mockUserId = 8
+
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
+      })
+    })
+
+    it('should call fetch with the correct URL', () => {
+      getUserRatings(mockUserId)
+
+      expect(window.fetch).toHaveBeenCalledWith('https://rancid-tomatillos.herokuapp.com/api/v1/users/8/ratings')
+    })
+
+    it('should return an array of ratings', () => {
+      expect(getUserRatings(mockUserId)).resolves.toEqual(mockResponse)
+    })
+    
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(getUserRatings(mockUserId)).rejects.toEqual(Error('Error fetching users movies'))
+    }) 
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(getUserRatings(mockUserId)).rejects.toEqual(Error('fetch failed'))
     })
   })
 })
