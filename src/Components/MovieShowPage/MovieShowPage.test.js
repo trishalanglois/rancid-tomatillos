@@ -232,29 +232,80 @@ describe('MovieShowPage', () => {
         })
       })
     })
-    // describe('mapState', () => {
-    //   it('should return the current movie', () => {
-    //     const mockState = {
-    //       currentMovie: {}
-    //     }
-    //   })
-    // })
+
+    describe('mapState', () => {
+      it('should return the current movie from global store', () => {
+        const mockState = {
+          currentMovie: {
+            id: 1,
+            title: "Jumanji: The Next Level",
+            poster_path: "url.com",
+            backdrop_path: "url.com",
+            release_date: "2019-12-04",
+            overview: "description",
+            average_rating: 6
+          },
+          currentUser: {
+            id: 8,
+            name: 'Rick'
+          },
+          ratings: [
+            {
+              id: 210,
+              user_id: 8,
+              movie_id: 2,
+              rating: 7,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            },
+            {
+              id: 212,
+              user_id: 8,
+              movie_id: 3,
+              rating: 3,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            }
+          ],
+          extra: 1
+        }
+        const expected = {
+          currentMovie: {
+            id: 1,
+            title: "Jumanji: The Next Level",
+            poster_path: "url.com",
+            backdrop_path: "url.com",
+            release_date: "2019-12-04",
+            overview: "description",
+            average_rating: 6
+          },
+          currentUser: {
+            id: 8,
+            name: 'Rick'
+          },
+          ratings: [
+            {
+              id: 210,
+              user_id: 8,
+              movie_id: 2,
+              rating: 7,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            },
+            {
+              id: 212,
+              user_id: 8,
+              movie_id: 3,
+              rating: 3,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            }
+          ]
+        }
+
+        const mappedProps = mapState(mockState)
+
+        expect(mappedProps).toEqual(expected)
+      })
+    })
   });
-
-  // describe('mapStateToProps', () => {
-  //   it('should return an object with the todos array', () => {
-  //     // Setup
-  //     const mockState = {
-  //       todos: [{text: 'Learn Redux!', id: 1}],
-  //       filter: 'SHOW_ALL'
-  //     };
-  //     const expected = {
-  //       todos: [{text: 'Learn Redux!', id: 1}]
-  //     };
-
-  //     // Execution
-  //     const mappedProps = mapStateToProps(mockState);
-
-  //     // Expectation
-  //     expect(mappedProps).toEqual(expected);
-  //   });
