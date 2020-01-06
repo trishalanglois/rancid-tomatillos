@@ -174,7 +174,7 @@ describe('apiCalls', () => {
         return Promise.reject(Error('fetch failed'))
       })
 
-      expect(getUser(mockEmail, mockPassword)).rejects.toEqual(Error('fetch failed'))
+      expect(postRating(mockRating, mockMovieId, mockUserId)).rejects.toEqual(Error('fetch failed'))
     })
   })
 })
