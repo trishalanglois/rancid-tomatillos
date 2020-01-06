@@ -1,3 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login Login Component Should match the snapshot 1`] = `ShallowWrapper {}`;
+exports[`Login Login Component Should match the snapshot 1`] = `
+"<form>
+  <div className=\\"input-wrapper\\">
+    <label className=\\"login-label\\" for=\\"user-email\\">
+      email
+    </label>
+    <input className=\\"login-input login-input-email\\" value={[undefined]} name=\\"email\\" type=\\"text\\" onChange={[Function: onChange]} />
+  </div>
+  <div className=\\"input-wrapper\\">
+    <label className=\\"login-label\\" for=\\"user-password\\">
+      password
+    </label>
+    <input className=\\"login-input login-input-password\\" value=\\"\\" name=\\"password\\" type=\\"password\\" onChange={[Function: onChange]} />
+    <button className=\\"login-button\\" type=\\"button\\" onClick={[Function: onClick]}>
+      Login
+    </button>
+  </div>
+</form>"
+`;
