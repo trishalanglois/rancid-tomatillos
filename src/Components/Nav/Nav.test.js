@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav } from './Nav';
 import { shallow } from 'enzyme';
 import { logOut, mapState, mapDispatch } from '../Nav/Nav';
-import { clearRatings, loggedIn } from '../../actions/actions';
+import { getRatings, loggedIn } from '../../actions/actions';
 
 describe('Nav', () => {
 
@@ -47,6 +47,16 @@ describe('Nav', () => {
 
       const mappedProps = mapDispatch(mockDispatch);
       mappedProps.login(true);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+    });
+
+    it('should call mapDispatch with no ratings', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = getRatings([]);
+
+      const mappedProps = mapDispatch(mockDispatch);
+      mappedProps.clearRatings([]);
 
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
