@@ -18,7 +18,7 @@ This app is also deployed on Heroku and can be [found here](http://cherokeesteak
 
 ## User Interface and User Experience
 ### Landing Page
-![Landing page when the user loads the app](https://imgur.com/r8PHdRA.gif)
+![Landing page when the user loads the app](https://imgur.com/CHDGX0U.png)
 
 The user will see a series of movies that they can then click on to view more information.
 
