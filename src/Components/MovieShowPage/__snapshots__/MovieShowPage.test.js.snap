@@ -16,8 +16,7 @@ exports[`MovieShowPage MovieShowPage component Should match the snapshot 1`] = `
         6
       </h3>
       <h3>
-        Your Rating: 
-        3
+        Sign in to rate
       </h3>
       <div />
       <p>
@@ -43,46 +42,9 @@ exports[`MovieShowPage MovieShowPage component should match the snapshot with no
         Average Rating: 
         6
       </h3>
-      <div className=\\"rating-div\\">
-        <label>
-          Rate This Movie
-        </label>
-        <select className=\\"rating-selector\\" name=\\"rating\\" value={{...}} onChange={[Function: onChange]}>
-          <option value=\\"1\\">
-            1
-          </option>
-          <option value=\\"2\\">
-            2
-          </option>
-          <option value=\\"3\\">
-            3
-          </option>
-          <option value=\\"4\\">
-            4
-          </option>
-          <option value=\\"5\\">
-            5
-          </option>
-          <option value=\\"6\\">
-            6
-          </option>
-          <option value=\\"7\\">
-            7
-          </option>
-          <option value=\\"8\\">
-            8
-          </option>
-          <option value=\\"9\\">
-            9
-          </option>
-          <option value=\\"10\\">
-            10
-          </option>
-        </select>
-        <button className=\\"rate-movie-button\\" onClick={[Function: onClick]}>
-          Submit Rating
-        </button>
-      </div>
+      <h3>
+        Sign in to rate
+      </h3>
       <div />
       <p>
         description

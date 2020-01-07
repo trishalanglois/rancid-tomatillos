@@ -25,3 +25,5 @@ export const getRatings = ratings => ({
   ratings
 });
 
+
+
