@@ -34,7 +34,8 @@ A user can click on a movie to show more information about that movie, as well a
 
 ## Future Iterations 
 Future iterations of this project will include the following:
-* 
+* Add ability to delete and re-submit ratings
+* Add test for the submitRating nested fetch
 
 ## Project Members
 This project was done at Turing School of Software and Design.  Team members are:
