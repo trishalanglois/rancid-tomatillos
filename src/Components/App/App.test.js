@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { App } from './App';
 import { mapDispatch, App } from './App';
 import { getMovies } from '../../actions/actions';
 import { fetchMovies } from '../../apiCalls';
@@ -11,7 +10,7 @@ describe('App', () => {
 
   beforeEach(() => {
     fetchMovies.mockImplementation(() => {
-      return Promise.resolve({ 
+      return Promise.resolve({
         movies: [
           {
             id:2,
@@ -23,7 +22,7 @@ describe('App', () => {
             average_rating:6.857142857142857
             }
         ]
-      }) 
+      })
     });
   })
 
@@ -62,7 +61,7 @@ describe('App', () => {
             overview:"In Jumanji: The Next Level, the gang is back but the game has changed. As they return to rescue one of their own, the players will have to brave parts unknown from arid deserts to snowy mountains, to escape the world's most dangerous game.",
             average_rating:7.142857142857143
         }]
-        
+
       });
 
       const mappedProps = mapDispatch(mockDispatch);
