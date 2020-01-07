@@ -1,7 +1,8 @@
 import React from 'react';
 import { Nav } from './Nav';
 import { shallow } from 'enzyme';
-import { logOut, mapState } from '../Nav/Nav';
+import { logOut, mapState, mapDispatch } from '../Nav/Nav';
+import { clearRatings, loggedIn } from '../../actions/actions';
 
 describe('Nav', () => {
 
@@ -40,8 +41,14 @@ describe('Nav', () => {
 
   describe('mapDispatch', () => {
 
-    it('', () => {
+    it('should call mapDispatch with a login', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = loggedIn(true);
 
+      const mappedProps = mapDispatch(mockDispatch);
+      mappedProps.login(true);
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
 
   });
