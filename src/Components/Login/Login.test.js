@@ -7,14 +7,13 @@ jest.mock('../../apiCalls')
 
 
 describe('Login', () => {
-  
-  let wrapper, mockEvent, mockGetUser
+
+  let wrapper, mockEvent
 
   describe('Login Component', () => {
 
     beforeEach(() => {
       mockEvent = { target: {name: 'email', value:'abc123@aol.com'} }
-      mockGetUser = jest.fn()
       wrapper = shallow(<Login />)
     });
 
@@ -25,7 +24,7 @@ describe('Login', () => {
     it('Should setState when handleChange is called', () => {
       wrapper.setState({ email: '', password:'', error: '' });
       wrapper.instance().handleChange(mockEvent);
-  
+
       expect(wrapper.state()).toEqual({ email: 'abc123@aol.com', password:'', error: '' })
     });
 
@@ -50,9 +49,9 @@ describe('Login', () => {
     it('Should call getUser with an email and password when handleLogin is called', () => {
       const mockEvent = { preventDefault: jest.fn() };
       getUser.mockImplementation(() => {
-        return Promise.resolve() 
+        return Promise.resolve()
       });
-     
+
       wrapper.setState({ email: 'abc123@aol.com', password: 'password123', error: '' });
       wrapper.find('button').simulate('click', mockEvent);
 
@@ -63,7 +62,7 @@ describe('Login', () => {
   describe('mapState', () => {
 
     it('Should return a login value of true', () => {
-      const mockState = { 
+      const mockState = {
         loggedIn: true,
         movies: [ {movie: 'movie1'} ]
       };
@@ -71,7 +70,7 @@ describe('Login', () => {
 
       const mappedProps = mapState(mockState);
 
-      expect(mappedProps).toEqual(expected); 
+      expect(mappedProps).toEqual(expected);
     })
   });
 
