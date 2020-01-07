@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './MovieShowPage.scss';
-import { postRating } from '../../apiCalls';
+import { postRating, getUserRatings, fetchMovies } from '../../apiCalls';
+import { getRatings, getMovies } from '../../actions/actions'
 import { connect } from 'react-redux';
-import { currentUser } from '../../reducers/currentUser';
 import PropTypes from 'prop-types';
 
 export class MovieShowPage extends Component {
@@ -19,6 +19,18 @@ export class MovieShowPage extends Component {
 
   submitRating = (rating, movieId, userId) => {
     postRating(rating, movieId, userId)
+      .then(data => {
+        getUserRatings(userId)
+          .then(ratings => {
+            this.props.getRatings(ratings.ratings);
+            fetchMovies()
+              .then(data => {
+                this.props.getMovies(data.movies)
+             })
+             .catch(err => console.log(err))
+          })
+          .catch(err => console.log(err))
+      })
       .catch(err => console.log(err))
   }
 
@@ -82,10 +94,15 @@ export class MovieShowPage extends Component {
 export const mapState = state => ({
   currentMovie: state.currentMovie,
   currentUser: state.currentUser,
-  ratings: state.ratings,
+  ratings: state.ratings
 })
 
-export default connect(mapState)(MovieShowPage)
+export const mapDispatch = dispatch => ({
+  getRatings: ratings => dispatch(getRatings(ratings)),
+  getMovies: movies => dispatch(getMovies(movies))
+})
+
+export default connect(mapState, mapDispatch)(MovieShowPage)
 
 MovieShowPage.propTypes = {
   ratings: PropTypes.array,
