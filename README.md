@@ -18,30 +18,30 @@ This app is also deployed on Heroku and can be [found here](http://cherokeesteak
 
 ## User Interface and User Experience
 ### Landing Page
-![Landing page when the user loads the app](https://imgur.com/r8PHdRA.png)
+![Landing page when the user loads the app](https://imgur.com/CHDGX0U.png)
 
 The user will see a series of movies that they can then click on to view more information.
 
-### Movie Page
-
-
-
 ## Login 
+![Login screen so a user can log in](https://imgur.com/hLGpZjH.png)
 
+When a user logs in, they will then be able to see their own ratings for specific movies.
 
-When the user clicks on "View Characters" from the specific Movie Component, they will be routed to a specific page for that movie that includes all of the characters for that movie.  There is still a Header component at the top of the page, the scrolling text from the beginning of the specific movie they're viewing, and Character components, each one being a character from that specific movie.
+### Movie Page
+![MovieShowPage that shows more information specific to a movie that's been chosen](https://imgur.com/IEGm6Gb.png)
+
+A user can click on a movie to show more information about that movie, as well as give their own rating for the movie, which will be saved to their account.
 
 ## Future Iterations 
 Future iterations of this project will include the following:
-* Responsiveness for mobile phones
-* Refactor the Loading Component to be dependent on state
-* Build Error Component if there is an error fetching the data from the Star Wars Api
-* Include movie and character-specific images on each card that's rendered
+* 
 
 ## Project Members
-This project was done over the course of 8 days at Turing School of Software and Design.  Team members are:
+This project was done at Turing School of Software and Design.  Team members are:
 
-[Dustin Mikusko](https://github.com/Dustin-Mikusko)
+[Scott Ertmer](https://github.com/sertmer)
+
+[Garrett Iannuzzi](https://github.com/Garrett-Iannuzzi)
 
 [Trisha Langlois](https://github.com/trishalanglois)
 
