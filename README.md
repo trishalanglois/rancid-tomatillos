@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Rancid Tomatillos
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+Rancid Tomatillos is a React app that uses Redux as a global state management tool.
+In creating this app, our team focused on the following:
+* Designing architecture of React application, including class and functional components and using Redux to manage global state
+* Using React Router to navigate from page to page
+* Using various endpoints to fetch, post and delete data
+* Resolving promises and cleaning data
+* Test Driven Development, including testing asynchronous methods and Redux methods
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To access this repo, simply clone down and run `npm install` to access the necessary packages.  For the best viewing experience, run `npm run start` and copy and paste your local server into the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+This app is also deployed on Heroku and can be [found here](http://cherokeesteak31.herokuapp.com/)
 
-### `npm test`
+## User Interface and User Experience
+### Landing Page
+![Landing page when the user loads the app](https://imgur.com/r8PHdRA.png)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The user will see a series of movies that they can then click on to view more information.
 
-### `npm run build`
+### Movie Page
+![View information about the seven different Star Wars movies with the option to view characters for that movie](https://imgur.com/5n4Hpdn.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Login 
+![characters3](https://user-images.githubusercontent.com/52764657/70578019-cb077100-1b69-11ea-9d2f-0a34a2ddd72e.gif)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+When the user clicks on "View Characters" from the specific Movie Component, they will be routed to a specific page for that movie that includes all of the characters for that movie.  There is still a Header component at the top of the page, the scrolling text from the beginning of the specific movie they're viewing, and Character components, each one being a character from that specific movie.
 
-### `npm run eject`
+## Future Iterations 
+Future iterations of this project will include the following:
+* Responsiveness for mobile phones
+* Refactor the Loading Component to be dependent on state
+* Build Error Component if there is an error fetching the data from the Star Wars Api
+* Include movie and character-specific images on each card that's rendered
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Project Members
+This project was done over the course of 8 days at Turing School of Software and Design.  Team members are:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[Dustin Mikusko](https://github.com/Dustin-Mikusko)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+[Trisha Langlois](https://github.com/trishalanglois)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
