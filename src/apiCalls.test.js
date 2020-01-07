@@ -223,7 +223,7 @@ describe('apiCalls', () => {
         })
       })
 
-      expect(getUserRatings(mockUserId)).rejects.toEqual(Error('Error fetching users movies'))
+      expect(getUserRatings(mockUserId)).rejects.toEqual(Error('Error fetching users ratings'))
     }) 
 
     it('should return an error if promise rejects', () => {

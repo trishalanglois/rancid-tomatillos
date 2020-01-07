@@ -53,7 +53,7 @@ export const getUserRatings = (userId) => {
   return fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`)
     .then(res => {
       if(!res.ok) {
-        throw Error('Error fetching users movies')
+        throw Error('Error fetching users ratings')
       }
       return res.json()
     })
