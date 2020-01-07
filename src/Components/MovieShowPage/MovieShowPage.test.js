@@ -1,7 +1,6 @@
 import React from 'react';
 import { MovieShowPage, mapState } from './MovieShowPage';
 import { shallow } from 'enzyme';
-import { getCurrentMovie, currentUser, getRatings } from '../../actions/actions';
 import { postRating } from '../../apiCalls';
 
 jest.mock('../../apiCalls')
@@ -9,7 +8,7 @@ jest.mock('../../apiCalls')
 describe('MovieShowPage', () => {
   describe('MovieShowPage component', () => {
     let wrapper
-    let mockProps 
+    let mockProps
       beforeEach(() => {
         mockProps = {
           currentMovie: {
@@ -44,13 +43,13 @@ describe('MovieShowPage', () => {
             }
           ]
         }
-        wrapper = shallow(<MovieShowPage 
+        wrapper = shallow(<MovieShowPage
           currentMovie={mockProps.currentMovie}
           currentUser={mockProps.currentUser}
           ratings={mockProps.ratings}
         />)
       });
-    
+
       it('Should match the snapshot', () => {
         expect(wrapper.debug()).toMatchSnapshot()
       });
@@ -91,7 +90,7 @@ describe('MovieShowPage', () => {
         }
 
         wrapper = shallow(
-        <MovieShowPage 
+        <MovieShowPage
           currentMovie={mockProps.currentMovie}
           currentUser={mockProps.currentUser}
           ratings={mockProps.ratings}
@@ -105,7 +104,7 @@ describe('MovieShowPage', () => {
         it('should update state when handleChange is invoked', () => {
           const mockDefaultState = {rating: null}
           const mockEvent = {target: {name: 'rating', value: '1' }}
-    
+
           expect(wrapper.state()).toEqual(mockDefaultState)
           wrapper.instance().handleChange(mockEvent)
           expect(wrapper.state('rating')).toEqual(1)
@@ -147,17 +146,17 @@ describe('MovieShowPage', () => {
           }
 
           wrapper = shallow(
-            <MovieShowPage 
+            <MovieShowPage
               currentMovie={mockProps.currentMovie}
               currentUser={mockProps.currentUser}
-              ratings={mockProps.ratings} 
+              ratings={mockProps.ratings}
             />
           )
 
           wrapper.instance().handleChange = jest.fn()
           wrapper.instance().forceUpdate()
           const mockEvent = {target: {name: 'rating', value: '2'}}
-          
+
           wrapper.find('.rating-selector').simulate('change', mockEvent)
           expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockEvent)
         })
@@ -211,17 +210,17 @@ describe('MovieShowPage', () => {
           }
 
           wrapper = shallow(
-            <MovieShowPage 
+            <MovieShowPage
               currentMovie={mockProps.currentMovie}
               currentUser={mockProps.currentUser}
-              ratings={mockProps.ratings} 
+              ratings={mockProps.ratings}
             />
           )
           wrapper.instance().submitRating = jest.fn()
           wrapper.setState({rating: 1})
           wrapper.find('.rate-movie-button').simulate('click')
           wrapper.instance().forceUpdate();
-          
+
           expect(wrapper.instance().submitRating).toHaveBeenCalledWith(1, mockProps.currentMovie.id, mockProps.currentUser.id)
         })
       })
