@@ -17,8 +17,8 @@ To access this repo, simply clone down and run `npm install` to access the neces
 This app is also deployed on Heroku and can be [found here](http://cherokeesteak31.herokuapp.com/)
 
 Log into the app with the following information:
-email: rick@turing.io
-password: asdf123
+ - email: rick@turing.io
+ - password: asdf123
 
 ## User Interface and User Experience
 ### Landing Page
