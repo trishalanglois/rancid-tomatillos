@@ -143,14 +143,16 @@ describe('MovieShowPage', () => {
                 created_at: "2020-01-04T20:37:36.154Z",
                 updated_at: "2020-01-04T20:37:36.154Z"
               }
-            ]
+            ],
+            loggedIn: true
           }
 
           wrapper = shallow(
             <MovieShowPage 
               currentMovie={mockProps.currentMovie}
               currentUser={mockProps.currentUser}
-              ratings={mockProps.ratings} 
+              ratings={mockProps.ratings}
+              loggedIn={mockProps.loggedIn} 
             />
           )
 
@@ -207,7 +209,8 @@ describe('MovieShowPage', () => {
                 created_at: "2020-01-04T20:37:36.154Z",
                 updated_at: "2020-01-04T20:37:36.154Z"
               }
-            ]
+            ],
+            loggedIn: true
           }
 
           wrapper = shallow(
@@ -215,6 +218,7 @@ describe('MovieShowPage', () => {
               currentMovie={mockProps.currentMovie}
               currentUser={mockProps.currentUser}
               ratings={mockProps.ratings} 
+              loggedIn={mockProps.loggedIn}
             />
           )
           wrapper.instance().submitRating = jest.fn()

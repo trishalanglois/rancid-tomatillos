@@ -2,10 +2,14 @@ import React from 'react';
 import './Nav.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loggedIn } from '../../actions/actions';
+import { loggedIn, getRatings } from '../../actions/actions';
 import PropTypes from 'prop-types';
 
-export const Nav = ({ isLoggedIn, login }) => {
+export const Nav = ({ isLoggedIn, login, clearRatings }) => {
+  const logOut = () => {
+    login(false);
+    clearRatings()
+  }
   return(
     <header>
       <h1 className='rancid-title'>Rancid</h1>
@@ -15,7 +19,7 @@ export const Nav = ({ isLoggedIn, login }) => {
       </Link>
         :
         <Link to='/'>
-        <button className='login-button-nav' type='button' onClick={() => login(false)}>Logout</button>
+        <button className='login-button-nav' type='button' onClick={ () => logOut() }>Logout</button>
       </Link>
     }
     </header>
@@ -27,7 +31,8 @@ export const mapState = state => ({
 })
 
 export const mapDispatch = dispatch => ({
-  login: boolean => dispatch(loggedIn(boolean))
+  login: boolean => dispatch(loggedIn(boolean)),
+  clearRatings: () => dispatch(getRatings([]))
 })
 
 export default connect(mapState, mapDispatch)(Nav);

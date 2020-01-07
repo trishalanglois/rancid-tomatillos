@@ -63,8 +63,6 @@ describe('Login', () => {
       expect(getUser).toHaveBeenCalledWith('abc123@aol.com', 'password123')
     });
 
-    
-
     it('Should call getUserRatings with a userId when handleGetUserRatings is called', () => {
       getUserRatings.mockImplementation(() => {
         return Promise.resolve() 
