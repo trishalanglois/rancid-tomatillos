@@ -23,11 +23,11 @@ This app is also deployed on Heroku and can be [found here](http://cherokeesteak
 The user will see a series of movies that they can then click on to view more information.
 
 ### Movie Page
-![View information about the seven different Star Wars movies with the option to view characters for that movie](https://imgur.com/5n4Hpdn.png)
+
 
 
 ## Login 
-![characters3](https://user-images.githubusercontent.com/52764657/70578019-cb077100-1b69-11ea-9d2f-0a34a2ddd72e.gif)
+
 
 When the user clicks on "View Characters" from the specific Movie Component, they will be routed to a specific page for that movie that includes all of the characters for that movie.  There is still a Header component at the top of the page, the scrolling text from the beginning of the specific movie they're viewing, and Character components, each one being a character from that specific movie.
 
