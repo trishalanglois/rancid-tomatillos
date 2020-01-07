@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import './MovieShowPage.scss';
 import { postRating } from '../../apiCalls';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
-=======
 import { currentUser } from '../../reducers/currentUser';
 import PropTypes from 'prop-types';
->>>>>>> 2368d938f193dc81de27128110d85f1976e250a8
 
 export class MovieShowPage extends Component {
   constructor(props) {
