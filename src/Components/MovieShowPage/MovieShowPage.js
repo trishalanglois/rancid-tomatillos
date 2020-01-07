@@ -4,6 +4,7 @@ import { postRating } from '../../apiCalls';
 import { connect } from 'react-redux';
 import { currentUser } from '../../reducers/currentUser';
 import PropTypes from 'prop-types';
+import { loggedIn } from '../../actions/actions';
 
 export class MovieShowPage extends Component {
   constructor(props) {
@@ -60,7 +61,7 @@ export class MovieShowPage extends Component {
   }
 
   render() {
-    const { currentMovie } = this.props
+    const { currentMovie, loggedIn } = this.props
     return (
       <main>
         <article>
@@ -69,7 +70,7 @@ export class MovieShowPage extends Component {
             <h2>{currentMovie.title}</h2>
             <h3>{currentMovie.release_date}</h3>
             <h3>Average Rating: {Math.round(currentMovie.average_rating)}</h3>
-            {this.hasRating()}
+            { loggedIn ? this.hasRating() : <h3>Sign in to rate</h3> }
             <div>{currentMovie.user_rating}</div>
             <p>{currentMovie.overview}</p>
           </section>
@@ -82,7 +83,8 @@ export class MovieShowPage extends Component {
 export const mapState = state => ({
   currentMovie: state.currentMovie,
   currentUser: state.currentUser,
-  ratings: state.ratings,
+  loggedIn: state.loggedIn,
+  ratings: state.ratings
 })
 
 export default connect(mapState)(MovieShowPage)
