@@ -2,16 +2,41 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { mapDispatch, App } from './App';
 import { getMovies } from '../../actions/actions';
-
+import { fetchMovies } from '../../apiCalls';
+jest.mock('../../apiCalls.js');
 
 describe('App', () => {
   let wrapper;
 
+  beforeEach(() => {
+    fetchMovies.mockImplementation(() => {
+      return Promise.resolve({ 
+        movies: [
+          {
+            id:2,
+            title:"Ad Astra",
+            poster_path:"https://image.tmdb.org/t/p/original//xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg",
+            backdrop_path:"https://image.tmdb.org/t/p/original//5BwqwxMEjeFtdknRV792Svo0K1v.jpg",
+            release_date:"2019-09-17",
+            overview:"The near future, a time when both hope and hardships drive humanity to look to the stars and beyond. While a mysterious phenomenon menaces to destroy life on planet Earth, astronaut Roy McBride undertakes a mission across the immensity of space and its many perils to uncover the truth about a lost expedition that decades before boldly faced emptiness and silence in search of the unknown.",
+            average_rating:6.857142857142857
+            }
+        ]
+      }) 
+    });
+  })
+
   it('should match the snapshot', () => {
-    wrapper = shallow(<App />)
+    wrapper = shallow(<App  getMovies={jest.fn()}/>)
 
     expect(wrapper.debug()).toMatchSnapshot()
   })
+
+  it('Should call fetchMovies componentDidMount is called', () => {
+    wrapper = shallow(<App getMovies={jest.fn()}/>);
+
+    expect(fetchMovies).toHaveBeenCalled()
+  });
 
   describe('mapDispatch', () => {
 
