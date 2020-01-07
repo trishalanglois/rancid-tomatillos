@@ -3,6 +3,7 @@ import './Nav.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loggedIn } from '../../actions/actions';
+import PropTypes from 'prop-types';
 
 export const Nav = ({ isLoggedIn, login }) => {
   return(
@@ -10,11 +11,11 @@ export const Nav = ({ isLoggedIn, login }) => {
       <h1 className='rancid-title'>Rancid</h1>
     {!isLoggedIn ?
       <Link to='/login'>
-        <button className='login-button' type='button'>Login</button>
+        <button className='login-button-nav' type='button'>Login</button>
       </Link>
         :
         <Link to='/'>
-        <button className='login-button' type='button' onClick={() => login(false)}>Logout</button>
+        <button className='login-button-nav' type='button' onClick={() => login(false)}>Logout</button>
       </Link>
     }
     </header>
@@ -30,3 +31,8 @@ export const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(Nav);
+
+Nav.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  login: PropTypes.func
+}

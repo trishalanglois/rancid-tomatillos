@@ -2,7 +2,7 @@ import React from 'react';
 import { Login, mapState, mapDispatch } from './Login';
 import { shallow } from 'enzyme';
 import { currentUser, loggedIn } from '../../actions/actions';
-import { getUser } from '../../apiCalls';
+import { getUser, getUserRatings } from '../../apiCalls';
 jest.mock('../../apiCalls')
 
 
@@ -11,15 +11,20 @@ describe('Login', () => {
   let wrapper, mockEvent
 
   describe('Login Component', () => {
-
     beforeEach(() => {
       mockEvent = { target: {name: 'email', value:'abc123@aol.com'} }
       wrapper = shallow(<Login />)
     });
 
-    it('Should match the snapshot', () => {
-      expect(wrapper).toMatchSnapshot()
+    it('Should match the snapshot when there is no error in state', () => {
+      expect(wrapper.debug()).toMatchSnapshot()
     });
+
+    it('should match the snapshot when there is an error in state', () => {
+      wrapper.setState({ error: 'YOU DID SOMETHING WRONG!!!!!' })
+
+      expect(wrapper.debug()).toMatchSnapshot();
+    })
 
     it('Should setState when handleChange is called', () => {
       wrapper.setState({ email: '', password:'', error: '' });
@@ -56,6 +61,19 @@ describe('Login', () => {
       wrapper.find('button').simulate('click', mockEvent);
 
       expect(getUser).toHaveBeenCalledWith('abc123@aol.com', 'password123')
+    });
+
+
+
+    it('Should call getUserRatings with a userId when handleGetUserRatings is called', () => {
+      getUserRatings.mockImplementation(() => {
+        return Promise.resolve()
+      });
+      const expected = 1;
+
+      wrapper.instance().handleGetUserRatings(expected);
+
+      expect(getUserRatings).toHaveBeenCalledWith(expected)
     });
   });
 

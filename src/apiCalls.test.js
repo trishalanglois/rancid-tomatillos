@@ -1,4 +1,4 @@
-import { fetchMovies, getUser } from './apiCalls';
+import { fetchMovies, getUser, postRating, getUserRatings } from './apiCalls';
 
 describe('apiCalls', () => {
   describe('fetchMovies', () => {
@@ -56,13 +56,15 @@ describe('apiCalls', () => {
 
   describe('getUser', () => {
     let mockResponse = {user: {id: 1, name: "Alan", email: "alan@turing.io"}}
-    let mockURL
+    let mockEmail
+    let mockPassword
     let mockOptions
   
     beforeEach(() => {
-      mockURL = "https://rancid-tomatillos.herokuapp.com/api/v1/login"
+      mockEmail = 'rick@turing.io'
+      mockPassword = 'bbbbb'
       mockOptions = {
-        "body": "{\"email\":\"alan@turing.io\",\"password\":\"asdf123\"}", "headers": {"Content-Type": "application/json"}, "method": "POST"
+        "body": "{\"email\":\"rick@turing.io\",\"password\":\"bbbbb\"}", "headers": {"Content-Type": "application/json"}, "method": "POST"
       }
 
       window.fetch = jest.fn().mockImplementation(() => {
@@ -75,14 +77,161 @@ describe('apiCalls', () => {
       })
     })
 
-    it('should be passed the correct arguments', () => {
-      getUser('alan@turing.io', 'asdf123')
+    it('should call fetch with the correct URL', () => {
+      getUser(mockEmail, mockPassword)
 
-      expect(window.fetch).toHaveBeenCalledWith(mockURL, mockOptions)
+      expect(window.fetch).toHaveBeenCalledWith('https://rancid-tomatillos.herokuapp.com/api/v1/login', mockOptions)
     })
 
     it('should return a user object', () => {
-      expect(getUser(mockURL)).resolves.toEqual(mockResponse)
+      expect(getUser(mockEmail, mockPassword)).resolves.toEqual(mockResponse)
+    })
+
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(getUser(mockEmail, mockPassword)).rejects.toEqual(Error('Something is not right, try again later'))
+    }) 
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(getUser(mockEmail, mockPassword)).rejects.toEqual(Error('fetch failed'))
+    })
+  })
+
+  describe('postRating', () => {
+    let mockResponse 
+    let mockRating
+    let mockMovieId
+    let mockUserId
+    let mockOptions
+  
+    beforeEach(() => {
+      mockResponse = {
+        id: 210,
+        user_id: 8,
+        movie_id: 11,
+        rating: 7,
+        created_at: "2020-01-04T20:37:36.154Z",
+        updated_at: "2020-01-04T20:37:36.154Z"
+      }
+
+      mockRating = {
+        "rating": {
+            "user_id": 8,
+            "movie_id": 11,
+            "rating": 7
+        }
+      }
+      mockMovieId = 11
+      mockUserId = 8
+      mockOptions = {
+        "body": "{\"rating\":{\"rating\":{\"user_id\":8,\"movie_id\":11,\"rating\":7}},\"movie_id\":11}", "headers": {
+         "Content-Type": "application/json",
+       },
+       "method": "POST"
+      }
+
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => {
+            return Promise.resolve(mockResponse)
+          }
+        })
+      })
+    })
+
+    it('should call fetch with the correct URL', () => {
+      postRating(mockRating, mockMovieId, mockUserId)
+
+      expect(window.fetch).toHaveBeenCalledWith('https://rancid-tomatillos.herokuapp.com/api/v1/users/8/ratings', mockOptions)
+    })
+
+    it('should return a rating object', () => {
+      expect(postRating(mockRating, mockMovieId, mockUserId)).resolves.toEqual(mockResponse)
+    })
+
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(postRating(mockRating, mockMovieId, mockUserId)).rejects.toEqual(Error('Error posting rating'))
+    }) 
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(postRating(mockRating, mockMovieId, mockUserId)).rejects.toEqual(Error('fetch failed'))
+    })
+  })
+
+  describe('getUserRatings', () => {
+    let mockResponse
+    let mockUserId
+
+    beforeEach(() => {
+      mockResponse = {
+        "ratings": [
+            {
+                "id": 210,
+                "user_id": 8,
+                "movie_id": 2,
+                "rating": 7,
+                "created_at": "2020-01-04T20:37:36.154Z",
+                "updated_at": "2020-01-04T20:37:36.154Z"
+            }
+        ]
+      }
+      
+      mockUserId = 8
+
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        })
+      })
+    })
+
+    it('should call fetch with the correct URL', () => {
+      getUserRatings(mockUserId)
+
+      expect(window.fetch).toHaveBeenCalledWith('https://rancid-tomatillos.herokuapp.com/api/v1/users/8/ratings')
+    })
+
+    it('should return an array of ratings', () => {
+      expect(getUserRatings(mockUserId)).resolves.toEqual(mockResponse)
+    })
+    
+    it('should throw an error if fetch fails', () => {
+      window.fetch = jest.fn().mockImplementation(()=> {
+        return Promise.resolve({
+          ok: false
+        })
+      })
+
+      expect(getUserRatings(mockUserId)).rejects.toEqual(Error('Error fetching users movies'))
+    }) 
+
+    it('should return an error if promise rejects', () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.reject(Error('fetch failed'))
+      })
+
+      expect(getUserRatings(mockUserId)).rejects.toEqual(Error('fetch failed'))
     })
   })
 })

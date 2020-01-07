@@ -34,7 +34,7 @@ export const postRating = (rating, movieId, userId) => {
     method: 'POST',
     body: JSON.stringify({
       'rating': rating,
-      'movie_id':movieId
+      'movie_id': movieId
     }),
     headers: {
       'Content-Type': 'application/json'
