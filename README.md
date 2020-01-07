@@ -10,6 +10,14 @@ In creating this app, our team focused on the following:
 * Resolving promises and cleaning data
 * Test Driven Development, including testing asynchronous methods and Redux methods
 
+## Tech Stack
+* React
+* React Router
+* Redux
+* Jest / Enzyme
+* Fetch API
+* SCSS
+
 ## Installation
 
 To access this repo, simply clone down and run `npm install` to access the necessary packages.  For the best viewing experience, run `npm run start` and copy and paste your local server into the browser.
