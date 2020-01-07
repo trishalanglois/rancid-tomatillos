@@ -34,7 +34,7 @@ export class Login extends Component {
   handleGetUserRatings = (userId) => {
     getUserRatings(userId)
       .then(res => this.props.getRatings(res.ratings))
-      .catch(err => console.log(err))
+      .catch(err => this.setState({ error: err }))
   }
 
   render() {
