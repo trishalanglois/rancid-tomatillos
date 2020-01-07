@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { App } from './App';
 import { mapDispatch, App } from './App';
 import { getMovies } from '../../actions/actions';
 import { fetchMovies } from '../../apiCalls';

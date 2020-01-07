@@ -3,7 +3,7 @@
 exports[`Movie should match the snapshot 1`] = `
 "<section className=\\"movie-card\\" onClick={[Function: onClick]}>
   <Link to=\\"/movies/1\\">
-    <img className=\\"movie-poster-img\\" src=\\"www.weewoo.com\\" />
+    <img className=\\"movie-poster-img\\" alt=\\"theater movie poster\\" src=\\"www.weewoo.com\\" />
   </Link>
   <div className=\\"movie-card-bottom\\">
     <p className=\\"average-rating\\">

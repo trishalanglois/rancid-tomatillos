@@ -77,7 +77,7 @@ export class MovieShowPage extends Component {
     return (
       <main>
         <article>
-          <img className='movie-backdrop' src={currentMovie.backdrop_path} alt='large image with characters from film' />
+          <img className='movie-backdrop' src={currentMovie.backdrop_path} alt='large banner with characters from film' />
           <section className='show-page-info'>
             <h2>{currentMovie.title}</h2>
             <h3>{currentMovie.release_date}</h3>

@@ -7,12 +7,12 @@ jest.mock('../../apiCalls')
 
 
 describe('Login', () => {
-  let wrapper, mockEvent, mockGetUser
+
+  let wrapper, mockEvent
 
   describe('Login Component', () => {
     beforeEach(() => {
       mockEvent = { target: {name: 'email', value:'abc123@aol.com'} }
-      mockGetUser = jest.fn()
       wrapper = shallow(<Login />)
     });
 
@@ -65,7 +65,7 @@ describe('Login', () => {
 
     it('Should call getUserRatings with a userId when handleGetUserRatings is called', () => {
       getUserRatings.mockImplementation(() => {
-        return Promise.resolve() 
+        return Promise.resolve()
       });
       const expected = 1;
 

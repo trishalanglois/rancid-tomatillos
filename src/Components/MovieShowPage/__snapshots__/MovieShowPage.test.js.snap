@@ -3,7 +3,7 @@
 exports[`MovieShowPage MovieShowPage component Should match the snapshot 1`] = `
 "<main>
   <article>
-    <img className=\\"movie-backdrop\\" src=\\"url.com\\" alt=\\"large image with characters from film\\" />
+    <img className=\\"movie-backdrop\\" src=\\"url.com\\" alt=\\"large banner with characters from film\\" />
     <section className=\\"show-page-info\\">
       <h2>
         Jumanji: The Next Level
@@ -30,7 +30,7 @@ exports[`MovieShowPage MovieShowPage component Should match the snapshot 1`] = `
 exports[`MovieShowPage MovieShowPage component should match the snapshot with no rating match 1`] = `
 "<main>
   <article>
-    <img className=\\"movie-backdrop\\" src=\\"url.com\\" alt=\\"large image with characters from film\\" />
+    <img className=\\"movie-backdrop\\" src=\\"url.com\\" alt=\\"large banner with characters from film\\" />
     <section className=\\"show-page-info\\">
       <h2>
         Jumanji: The Next Level

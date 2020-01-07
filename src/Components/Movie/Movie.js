@@ -14,7 +14,7 @@ export const Movie = (props) => {
   return(
     <section className="movie-card" onClick={() => props.getCurrentMovie(props.movie)}>
       <Link to={`/movies/${props.movie.id}`}>
-      <img className='movie-poster-img' src={props.movie.poster_path}/>
+      <img className='movie-poster-img' alt="theater movie poster" src={props.movie.poster_path}/>
       </Link>
       <div className="movie-card-bottom">
         <p className="average-rating">
