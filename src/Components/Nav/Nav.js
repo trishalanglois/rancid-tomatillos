@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { loggedIn, getRatings } from '../../actions/actions';
 import PropTypes from 'prop-types';
 
+
 export const Nav = ({ isLoggedIn, login, clearRatings }) => {
   const logOut = () => {
     login(false);

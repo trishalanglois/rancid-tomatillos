@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Nav should match the snapshot 1`] = `
+exports[`Nav Nav Component should match the snapshot 1`] = `
 "<header>
   <h1 className=\\"rancid-title\\">
     Rancid
   </h1>
-  <Link to=\\"/login\\">
-    <button className=\\"login-button-nav\\" type=\\"button\\">
-      Login
+  <Link to=\\"/\\">
+    <button className=\\"login-button-nav\\" type=\\"button\\" onClick={[Function: onClick]}>
+      Logout
     </button>
   </Link>
 </header>"
