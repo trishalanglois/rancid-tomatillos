@@ -25,10 +25,10 @@ header {
   padding-top: 15px;
 }
 
-.login-button {
+.login-button-nav {
   width: 10vw;
   height: 5vh;
-  @include rounded-corners(5px);
+  @include rounded-corners(20px);
   background-color: $green;
   margin-top: 27%;
   margin-left: 76%;

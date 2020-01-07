@@ -9,7 +9,7 @@ import { Route } from 'react-router-dom';
 import MovieShowPage from '../MovieShowPage/MovieShowPage';
 import { fetchMovies } from '../../apiCalls';
 
-class App extends Component {
+export class App extends Component {
   constructor() {
     super()
   }
@@ -46,8 +46,7 @@ class App extends Component {
   }
 }
 
-
-const mapDispatch = dispatch => ({
+export const mapDispatch = dispatch => ({
   getMovies: movies => dispatch(getMovies(movies))
 })
 

@@ -1,40 +1,311 @@
 import React from 'react';
-import MovieShowPage from './MovieShowPage';
+import { MovieShowPage, mapState } from './MovieShowPage';
 import { shallow } from 'enzyme';
-import { getCurrentMovie } from '../../actions/actions';
+import { getCurrentMovie, currentUser, getRatings } from '../../actions/actions';
+import { postRating } from '../../apiCalls';
+
+jest.mock('../../apiCalls')
 
 describe('MovieShowPage', () => {
-  let wrapper
+  describe('MovieShowPage component', () => {
+    let wrapper
+    let mockProps 
+      beforeEach(() => {
+        mockProps = {
+          currentMovie: {
+            id: 1,
+            title: "Jumanji: The Next Level",
+            poster_path: "url.com",
+            backdrop_path: "url.com",
+            release_date: "2019-12-04",
+            overview: "description",
+            average_rating: 6
+        },
+          currentUser: {
+            id: 1,
+            name: 'Rick'
+          },
+          ratings: [
+            {
+              id: 210,
+              user_id: 8,
+              movie_id: 2,
+              rating: 7,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            },
+            {
+              id: 212,
+              user_id: 8,
+              movie_id: 1,
+              rating: 3,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            }
+          ]
+        }
+        wrapper = shallow(<MovieShowPage 
+          currentMovie={mockProps.currentMovie}
+          currentUser={mockProps.currentUser}
+          ratings={mockProps.ratings}
+        />)
+      });
+    
+      it('Should match the snapshot', () => {
+        expect(wrapper.debug()).toMatchSnapshot()
+      });
 
-  describe('MovieShowPage Component', () => {
+      it('should match the snapshot with no rating match', () => {
+        mockProps = {
+          currentMovie: {
+            id: 1,
+            title: "Jumanji: The Next Level",
+            poster_path: "url.com",
+            backdrop_path: "url.com",
+            release_date: "2019-12-04",
+            overview: "description",
+            average_rating: 6
+        },
+          currentUser: {
+            id: 1,
+            name: 'Rick'
+          },
+          ratings: [
+            {
+              id: 210,
+              user_id: 8,
+              movie_id: 2,
+              rating: 7,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            },
+            {
+              id: 212,
+              user_id: 8,
+              movie_id: 3,
+              rating: 3,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            }
+          ]
+        }
 
-    beforeEach(() => {
-      wrapper = shallow(<MovieShowPage />)
-    });
-  
-    it('Should match the snapshot', () => {
-      expect(wrapper).toMatchSnapshot()
-    });
-  });
+        wrapper = shallow(
+        <MovieShowPage 
+          currentMovie={mockProps.currentMovie}
+          currentUser={mockProps.currentUser}
+          ratings={mockProps.ratings}
+        />
+        )
 
-  describe('mapState', () => {
+        expect(wrapper.debug()).toMatchSnapshot()
+      })
 
-    it('Should be passed a selected movie', () => {
-      const mockMovie = {
+      describe('handleChange', () => {
+        it('should update state when handleChange is invoked', () => {
+          const mockDefaultState = {rating: null}
+          const mockEvent = {target: {name: 'rating', value: '1' }}
+    
+          expect(wrapper.state()).toEqual(mockDefaultState)
+          wrapper.instance().handleChange(mockEvent)
+          expect(wrapper.state('rating')).toEqual(1)
+        })
 
-      }
-      const mockState = { 
-        loggedIn: true,
-        movies: [ {movie: 'movie1'} ]
-      };
-      const expected = { : true };
+        it('should call handleChange upon change to input', () => {
+          mockProps = {
+            currentMovie: {
+              id: 1,
+              title: "Jumanji: The Next Level",
+              poster_path: "url.com",
+              backdrop_path: "url.com",
+              release_date: "2019-12-04",
+              overview: "description",
+              average_rating: 6
+          },
+            currentUser: {
+              id: 1,
+              name: 'Rick'
+            },
+            ratings: [
+              {
+                id: 210,
+                user_id: 8,
+                movie_id: 2,
+                rating: 7,
+                created_at: "2020-01-04T20:37:36.154Z",
+                updated_at: "2020-01-04T20:37:36.154Z"
+              },
+              {
+                id: 212,
+                user_id: 8,
+                movie_id: 3,
+                rating: 3,
+                created_at: "2020-01-04T20:37:36.154Z",
+                updated_at: "2020-01-04T20:37:36.154Z"
+              }
+            ]
+          }
 
-      const mappedProps = mapState(mockState);
+          wrapper = shallow(
+            <MovieShowPage 
+              currentMovie={mockProps.currentMovie}
+              currentUser={mockProps.currentUser}
+              ratings={mockProps.ratings} 
+            />
+          )
 
-      expect(mappedProps).toEqual(expected); 
+          wrapper.instance().handleChange = jest.fn()
+          wrapper.instance().forceUpdate()
+          const mockEvent = {target: {name: 'rating', value: '2'}}
+          
+          wrapper.find('.rating-selector').simulate('change', mockEvent)
+          expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockEvent)
+        })
+      })
+
+      describe('submitRating', () => {
+        it('should call postRatings with the right parameters', () => {
+          const mockState = {rating: 1}
+          wrapper.instance().setState(mockState)
+          postRating.mockImplementation(() => {
+            return Promise.resolve()
+        })
+          wrapper.instance().submitRating(wrapper.state.rating, mockProps.currentMovie.id, mockProps.currentUser.id)
+
+          expect(postRating).toHaveBeenCalledWith(wrapper.state.rating, mockProps.currentMovie.id, mockProps.currentUser.id)
+        })
+
+        it('should be called on button click', () => {
+          mockProps = {
+            currentMovie: {
+              id: 1,
+              title: "Jumanji: The Next Level",
+              poster_path: "url.com",
+              backdrop_path: "url.com",
+              release_date: "2019-12-04",
+              overview: "description",
+              average_rating: 6
+          },
+            currentUser: {
+              id: 1,
+              name: 'Rick'
+            },
+            ratings: [
+              {
+                id: 210,
+                user_id: 8,
+                movie_id: 2,
+                rating: 7,
+                created_at: "2020-01-04T20:37:36.154Z",
+                updated_at: "2020-01-04T20:37:36.154Z"
+              },
+              {
+                id: 212,
+                user_id: 8,
+                movie_id: 3,
+                rating: 3,
+                created_at: "2020-01-04T20:37:36.154Z",
+                updated_at: "2020-01-04T20:37:36.154Z"
+              }
+            ]
+          }
+
+          wrapper = shallow(
+            <MovieShowPage 
+              currentMovie={mockProps.currentMovie}
+              currentUser={mockProps.currentUser}
+              ratings={mockProps.ratings} 
+            />
+          )
+          wrapper.instance().submitRating = jest.fn()
+          wrapper.setState({rating: 1})
+          wrapper.find('.rate-movie-button').simulate('click')
+          wrapper.instance().forceUpdate();
+          
+          expect(wrapper.instance().submitRating).toHaveBeenCalledWith(1, mockProps.currentMovie.id, mockProps.currentUser.id)
+        })
+      })
+
+      describe('findMatchingRating', () => {
+        it('should return true if it finds match in the array', () => {
+          expect(wrapper.instance().findMatchingRating(mockProps.ratings, mockProps.currentMovie.id)).toEqual(true)
+        })
+      })
+    })
+
+    describe('mapState', () => {
+      it('should return the current movie from global store', () => {
+        const mockState = {
+          currentMovie: {
+            id: 1,
+            title: "Jumanji: The Next Level",
+            poster_path: "url.com",
+            backdrop_path: "url.com",
+            release_date: "2019-12-04",
+            overview: "description",
+            average_rating: 6
+          },
+          currentUser: {
+            id: 8,
+            name: 'Rick'
+          },
+          ratings: [
+            {
+              id: 210,
+              user_id: 8,
+              movie_id: 2,
+              rating: 7,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            },
+            {
+              id: 212,
+              user_id: 8,
+              movie_id: 3,
+              rating: 3,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            }
+          ],
+          extra: 1
+        }
+        const expected = {
+          currentMovie: {
+            id: 1,
+            title: "Jumanji: The Next Level",
+            poster_path: "url.com",
+            backdrop_path: "url.com",
+            release_date: "2019-12-04",
+            overview: "description",
+            average_rating: 6
+          },
+          currentUser: {
+            id: 8,
+            name: 'Rick'
+          },
+          ratings: [
+            {
+              id: 210,
+              user_id: 8,
+              movie_id: 2,
+              rating: 7,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            },
+            {
+              id: 212,
+              user_id: 8,
+              movie_id: 3,
+              rating: 3,
+              created_at: "2020-01-04T20:37:36.154Z",
+              updated_at: "2020-01-04T20:37:36.154Z"
+            }
+          ]
+        }
+
+        const mappedProps = mapState(mockState)
+
+        expect(mappedProps).toEqual(expected)
+      })
     })
   });
-
-
-
-})
