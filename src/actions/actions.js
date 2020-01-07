@@ -24,4 +24,3 @@ export const getRatings = ratings => ({
   type: 'GET_RATINGS',
   ratings
 });
-

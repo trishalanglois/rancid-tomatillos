@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './MovieShowPage.scss';
-import { postRating } from '../../apiCalls';
+import { postRating, getUserRatings, fetchMovies } from '../../apiCalls';
+import { getRatings, getMovies } from '../../actions/actions'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { loggedIn } from '../../actions/actions';
 
 export class MovieShowPage extends Component {
   constructor(props) {
@@ -18,6 +20,18 @@ export class MovieShowPage extends Component {
 
   submitRating = (rating, movieId, userId) => {
     postRating(rating, movieId, userId)
+      .then(data => {
+        getUserRatings(userId)
+          .then(ratings => {
+            this.props.getRatings(ratings.ratings);
+            fetchMovies()
+              .then(data => {
+                this.props.getMovies(data.movies)
+             })
+             .catch(err => console.log(err))
+          })
+          .catch(err => console.log(err))
+      })
       .catch(err => console.log(err))
   }
 
@@ -59,7 +73,7 @@ export class MovieShowPage extends Component {
   }
 
   render() {
-    const { currentMovie } = this.props
+    const { currentMovie, loggedIn } = this.props
     return (
       <main>
         <article>
@@ -68,7 +82,7 @@ export class MovieShowPage extends Component {
             <h2>{currentMovie.title}</h2>
             <h3>{currentMovie.release_date}</h3>
             <h3>Average Rating: {Math.round(currentMovie.average_rating)}</h3>
-            {this.hasRating()}
+            { loggedIn ? this.hasRating() : <h3>Sign in to rate</h3> }
             <div>{currentMovie.user_rating}</div>
             <p>{currentMovie.overview}</p>
           </section>
@@ -81,10 +95,16 @@ export class MovieShowPage extends Component {
 export const mapState = state => ({
   currentMovie: state.currentMovie,
   currentUser: state.currentUser,
-  ratings: state.ratings,
+  loggedIn: state.loggedIn,
+  ratings: state.ratings
 })
 
-export default connect(mapState)(MovieShowPage)
+export const mapDispatch = dispatch => ({
+  getRatings: ratings => dispatch(getRatings(ratings)),
+  getMovies: movies => dispatch(getMovies(movies))
+})
+
+export default connect(mapState, mapDispatch)(MovieShowPage)
 
 MovieShowPage.propTypes = {
   ratings: PropTypes.array,
