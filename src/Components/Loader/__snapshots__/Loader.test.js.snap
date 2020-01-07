@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader should match the snapshot 1`] = `
+"<main className=\\"loader-wrapper\\">
+  <h2 className=\\"loading-text\\">
+    Loading Movies...
+  </h2>
+  <img className=\\"projector\\" src=\\"film_projector.gif\\" alt=\\"image of film projector to show page loading\\" />
+</main>"
+`;
