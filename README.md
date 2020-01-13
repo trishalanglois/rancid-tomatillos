@@ -34,7 +34,7 @@ Log into the app with the following information:
 
 The user will see a series of movies that they can then click on to view more information.
 
-## Login 
+### Login 
 ![Login screen so a user can log in](https://imgur.com/hLGpZjH.png)
 
 When a user logs in, they will then be able to see their own ratings for specific movies.
