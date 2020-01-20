@@ -22,7 +22,7 @@ In creating this app, our team focused on the following:
 
 To access this repo, simply clone down and run `npm install` to access the necessary packages.  For the best viewing experience, run `npm run start` and copy and paste your local server into the browser.
 
-This app is also deployed on Heroku and can be [found here](http://cherokeesteak31.herokuapp.com/)
+This app is also deployed on Surge and can be [found here](http://cherokeesteak31.surge.sh/)
 
 Log into the app with the following information:
  - email: rick@turing.io
